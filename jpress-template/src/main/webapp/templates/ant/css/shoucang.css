@@ -1,0 +1,29 @@
+.textcollection{
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7em;
+    color: #999;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 15px;
+}
+.textcollection:hover{
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7em;
+    color: #999;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 15px;
+}
+.textcollection span{
+	line-height: 1.7em;
+}
+.textcollection img{
+	width: 18px;
+	line-height: 1.7em;
+	height: 18px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: -3px;
+}

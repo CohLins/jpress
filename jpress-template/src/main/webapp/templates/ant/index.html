@@ -1,0 +1,393 @@
+#include("_layout.html")
+#@layout()
+<script>
+    $(document).on('click','.tab-titles li',function() {
+        var i = $(this).index()+1;
+        console.log(i)
+        $('.tab-titles li').removeClass('active');
+        $(this).addClass('active');
+        var divid = '#tab'+i;
+        $('.popular-loop div').removeClass('tab-show');
+        $(divid).addClass('tab-show');
+    })
+</script>
+
+#define content()
+<div id="primary" class="content-area clear" >
+
+    <div class="content-wrapper">
+        #if(option("ant_slide_enable"))
+      <div id="featured-slider" class="clear">
+
+        <div class="bx-wrapper" style="max-width: 100%;">
+          <div class="bx-viewport" aria-live="polite"
+            style="width: 100%; overflow: hidden; position: relative; height: 365px;">
+            <ul class="bxslider" style="width: auto; position: relative; display: block;">
+
+              <li class="featured-slide hentry" >
+                <a class="thumbnail-link"
+                  href="#option('banner1_link')">
+                  <div class="thumbnail-wrap">
+                    <img width="800" height="400"
+                      src="#option('banner1','images/no.jpg')"
+                      class="attachment-zimeiti_2_featured_large_thumb size-zimeiti_2_featured_large_thumb wp-post-image"> </div>
+                  <div class="gradient" style="display: block;"></div>
+                </a>
+                <div class="entry-header clear" style="display: block;">
+                  <h2 class="entry-title"><a
+                      href="#option('banner1_link')">#option('banner1_text')</a></h2>
+                </div>
+              </li>
+
+              <li class="featured-slide hentry" >
+                  <a class="thumbnail-link"
+                    href="#option('banner2_link')">
+                    <div class="thumbnail-wrap">
+                      <img width="800" height="400"
+                        src="#option('banner2','images/no.jpg')"
+                        class="attachment-zimeiti_2_featured_large_thumb size-zimeiti_2_featured_large_thumb wp-post-image"> </div>
+                    <div class="gradient" style="display: block;"></div>
+                  </a>
+                  <div class="entry-header clear" style="display: block;">
+                    <h2 class="entry-title"><a
+                        href="#option('banner2_link')">#option('banner2_text')</a></h2>
+                  </div>
+                </li>
+
+                <li class="featured-slide hentry" >
+                    <a class="thumbnail-link"
+                      href="#option('banner3_link')">
+                      <div class="thumbnail-wrap">
+                        <img width="800" height="400"
+                          src="#option('banner3','images/no.jpg')"
+                          class="attachment-zimeiti_2_featured_large_thumb size-zimeiti_2_featured_large_thumb wp-post-image"> </div>
+                      <div class="gradient" style="display: block;"></div>
+                    </a>
+                    <div class="entry-header clear" style="display: block;">
+                      <h2 class="entry-title"><a
+                          href="#option('banner3_link')">#option('banner3_text')</a></h2>
+                    </div>
+                  </li>
+
+                  <li class="featured-slide hentry" >
+                      <a class="thumbnail-link"
+                        href="#option('banner4_link')">
+                        <div class="thumbnail-wrap">
+                          <img width="800" height="400"
+                            src="#option('banner4','images/no.jpg')"
+                            class="attachment-zimeiti_2_featured_large_thumb size-zimeiti_2_featured_large_thumb wp-post-image"> </div>
+                        <div class="gradient" style="display: block;"></div>
+                      </a>
+                      <div class="entry-header clear" style="display: block;">
+                        <h2 class="entry-title"><a
+                            href="#option('banner4_link')">#option('banner4_text')</a></h2>
+                      </div>
+                    </li>
+
+                    <li class="featured-slide hentry" >
+                        <a class="thumbnail-link"
+                          href="#option('banner5_link')">
+                          <div class="thumbnail-wrap">
+                            <img width="800" height="400"
+                              src="#option('banner5','images/no.jpg')"
+                              class="attachment-zimeiti_2_featured_large_thumb size-zimeiti_2_featured_large_thumb wp-post-image"> </div>
+                          <div class="gradient" style="display: block;"></div>
+                        </a>
+                        <div class="entry-header clear" style="display: block;">
+                          <h2 class="entry-title"><a
+                              href="#option('banner5_link')">#option('banner5_text')</a></h2>
+                        </div>
+                      </li>
+
+
+            </ul>
+          </div>
+          <div class="bx-controls bx-has-controls-direction bx-has-pager">
+            
+          </div>
+        </div><!-- .bxslider -->
+
+      </div><!-- #featured-slider -->
+
+        #end
+
+
+      <div id="featured-grid" class="clear">
+
+        <ul class="clear">
+
+            #articles(flag="index_top",hasThumbnail="true",orderBy="order_number",count="4")
+            #for(article : articles)
+            <li class="featured-post hentry ht_grid_1_4">
+
+                <a class="thumbnail-link" href="#(article.url)">
+                  <div class="thumbnail-wrap">
+                    <img width="280" height="180" src="#(article.showImage ?? 'images/no.jpg')"
+
+                      class="attachment-zimeiti_2_list_thumb size-zimeiti_2_list_thumb wp-post-image"
+                      alt=""> </div><!-- .thumbnail-wrap -->
+                </a>
+    
+                <div class="entry-header">
+                  <h2 class="entry-title"><a
+                      href="#(article.url)">#(article.title)</a>
+                  </h2>
+                  <div class="entry-meta">
+                    <span class="entry-like">阅读<span class="view-count">(#(article.view_count))</span> </span>
+    
+                    <span class="entry-views">评论<span class="view-count">(#(article.comment_count))</span> </span>
+    
+                  </div><!-- .entry-meta -->
+                </div><!-- .entry-header -->
+    
+              </li>
+            #end
+          #end
+
+
+
+
+        </ul><!-- .featured-grid -->
+
+        <div class="ribbon" style="display: block;"><span>编辑推荐</span></div>
+
+      </div><!-- #featured-grid -->
+
+
+
+
+      <div class="tab-wrap popular-content">
+        <ul class="tab-titles">
+          <li class="active"><a href="#tab1">热门文章</a></li>
+          <li><a href="#tab2">热评文章</a></li>
+          <li><a href="#tab3">最新帖子</a></li>
+          <li><a href="#tab4">热评帖子</a></li>
+        </ul>
+
+        <div class="popular-loop">
+            <div id="tab1" class="tab-content tab-show">
+
+            #articles(orderBy="view_count desc",count="5")
+              #for(article : articles)
+
+              <div class="hentry">
+                  <h2 class="entry-title">
+                     <span class="post-num num-#(for.count)">#(for.count)</span>
+                    <a
+                      href="#(article.url)">#(article.title)</a>
+                  </h2>
+
+                  <div class="entry-meta">
+
+                    <span class="entry-views">阅读<span class="view-count">(#(article.view_count))</span></span>
+
+                  </div>
+                </div><!-- .hentry -->
+              #end
+            #end
+
+          </div><!-- #tab1 -->
+            <div id="tab2" class="tab-content">
+
+              #articles(orderBy="comment_count desc",count="5")
+              #for(article : articles)
+
+              <div class="hentry">
+                  <h2 class="entry-title">
+                      <span class="post-num num-#(for.count)">#(for.count)</span>
+                    <a
+                      href="#(article.url)">#(article.title)</a>
+                  </h2>
+
+                  <div class="entry-meta">
+
+                    <span class="entry-views">评论<span class="view-count">(#(article.comment_count))</span></span>
+
+                  </div>
+                </div><!-- .hentry -->
+              #end
+            #end
+
+
+
+          </div><!-- #tab2 -->
+            <div id="tab3" class="tab-content">
+                #hotPosts(count="5",orderBy="created desc")
+                #for(post : posts)
+                <div class="hentry">
+                    <h2 class="entry-title">
+                        <span class="post-num num-#(for.count)">#(for.count)</span>
+                        <a href="#(post.url ??)">#(post.title ??)</a>
+                    </h2>
+
+                    <div class="entry-meta">
+
+                        <span class="entry-views"><span class="elegantDate" data-elegant-date="">#date(post.created,'yyyy-MM-dd HH:mm:ss')</span></span>
+
+                    </div>
+                </div><!-- .hentry -->
+                #end
+                #end
+
+            </div><!-- #tab3 -->
+            <div id="tab4" class="tab-content">
+                #hotPosts(count="5",orderBy="comment_count desc")
+                #for(post : posts)
+                <div class="hentry">
+                    <h2 class="entry-title">
+                        <span class="post-num num-#(for.count)">#(for.count)</span>
+                        <a href="#(post.url ??)">#(post.title ??)</a>
+                    </h2>
+
+                    <div class="entry-meta">
+
+                        <span class="entry-views">评论<span class="view-count">(#(post.comment_count ?? 0))</span></span>
+
+                    </div>
+                </div><!-- .hentry -->
+                #end
+                #end
+
+
+
+            </div><!-- #tab4 -->
+        </div>
+      </div>
+
+
+      #articlePage(flag="",hasThumbnail="true",orderBy="created desc",count=10)
+      <main id="main" class="site-main clear">
+
+        <div id="recent-content" class="content-list">
+
+          <h2 class="section-title">
+            <span class="title">最新发布</span>
+
+            <!-- <div class="posts-counter">
+              <span class="hours">今日更新<strong>0</strong>篇</span>
+              <span class="days">文章总数<strong>56</strong>篇</span>
+            </div> -->
+            
+          </h2>
+
+
+
+          #for(article : articlePage.list)
+
+          <div 
+          class="clear post type-post status-publish format-standard has-post-thumbnail hentry category-finance tag-28 tag-30 tag-39">
+
+          <h2 class="entry-title">
+            
+            <a href="#(article.url)">#(article.title)</a>
+          </h2>
+
+
+          <a class="thumbnail-link" href="#(article.url)">
+            <div class="thumbnail-wrap" style="
+            height: 140px;
+        ">
+              <img width="280" height="180" src="#(article.showImage ?? 'images/no.jpg')"
+                class="attachment-zimeiti_2_list_thumb size-zimeiti_2_list_thumb wp-post-image"
+                alt=""> </div><!-- .thumbnail-wrap -->
+          </a>
+
+
+          <div class="entry-overview 	">
+
+            <div class="entry-meta first-line">
+
+
+              <span class="entry-author">
+
+                <a href="#(CPATH)/user/#(article.user.userId)">
+
+                  <img alt="" src="#(article.user.avatar  ?? 'images/no.jpg')"
+                  
+                    class="avatar avatar-80 photo" height="80" width="80">
+                    #(article.user.username)
+                </a>
+
+              </span><!-- .entry-author -->
+
+
+
+              <span class="entry-date">
+                发布于 #date(article.created,'yyyy-MM-dd')</span><!-- .entry-date -->
+
+
+            </div>
+
+
+
+
+            <div class="entry-summary">
+              <p> #if (article.text)
+                  #maxLength(article.text,100)....
+                  #else 
+                  #(article.summary)..
+                  #end</p>
+            </div><!-- .entry-summary -->
+
+
+          </div><!-- .entry-overview -->
+
+          <div class="entry-meta second-line">
+
+
+            <span class="entry-category">
+                #articleCategories(article.id,"category")
+                #for(category : categories)
+                    <a
+                    href="#(category.url ??)"
+                    target="_blank">#(category.title ??)</a>
+                    #end
+                #end
+            </span><!-- .entry-category -->
+
+
+           
+            <!-- .entry-like -->
+
+
+            <span class="entry-comment"><a
+                href="#(article.url)#respond"
+                class="comments-link">评论(#(article.comment_count))</a></span>
+
+            <span class="entry-views">阅读<span class="view-count">(#(article.view_count))</span> </span>
+
+          </div><!-- .entry-meta -->
+        </div>
+
+          #end
+
+         
+
+
+
+          
+        </div><!-- #recent-content -->
+
+      </main><!-- .site-main -->
+
+      #end
+      
+            #articlePaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="current")
+            <nav class="navigation pagination" role="navigation">
+                <div class="nav-links">
+                #for(page : pages)
+                <a class="page-numbers #(page.style ??)" href="#(page.url ??)">#(page.text ??)</a>
+                #end
+            </div>
+            </nav>
+            #end
+       
+      
+
+    </div><!-- .content-wrapper -->
+
+  </div><!-- #primary -->
+<script src="#(CPATH)/static/commons/jpresscommons.js"></script>
+#include("_rightbar.html")
+
+#end

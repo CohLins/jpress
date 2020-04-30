@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="keywords" content="">&lt;!&ndash;关键字&ndash;&gt;-->
+		<!--<meta name="description" content="">&lt;!&ndash;简介&ndash;&gt;-->
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/layout_f4855e3.css" />
+		<link rel="stylesheet" type="text/css" href="./css/user_center.css" />
+		<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
+
+		<title>个人主页</title>
+	</head>
+
+	<body>
+	#writerSearch()
+		<!--头部-->
+		<div id="header">
+			<div class="middlebar">
+				<div class="y-box middlebar-inner">
+					<!--左边logo-->
+					<div class="y-left logo-box">
+						<a class="logo-link" href="#(CPATH)/">
+							<img class="logo" src="#option('calmlog_logo','./images/logo.png')">
+							<!--资讯网-->
+						</a>
+					</div>
+					<!--走遍搜索框-->
+					<div class="y-right">
+						<div style="margin-top: 9px; width: 340px;">
+							<div name="searchBox" class="wsearch">
+								<form name="searchForm" action="#(CPATH)/writer/#(user.id)" method="get">
+
+									<div name="inputbox" class="y-box input-group"> <input class="y-left input-text" name="keyword" autocomplete="off" ga_event="mh_search" type="text" placeholder="请输入关键字" value="#(searchValue ??)">
+										<div class="y-right btn-submit"> <button type="submit" href="javascript:;"> <i class="y-icon icon-search" ga_event="mh_search"></i> </button> </div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--个人信息-->
+		<div id="wrapper">
+			<div riot-tag="yheader" class="yheader">
+				<a href="javascript:;"><img class="bg-header" alt="头像" src="//s3.pstatp.com/site/tt_mfsroot/pc_img/bg_profile.png"></a>
+				<div>
+					<a class="user_head_click" href="javascript:;"><img alt="" class="avatar" src="#(user.avatar);"></a>
+					<ul>
+						<li class="title">
+							<a ga_event="user_head_click"> <span class="name">#(user.nickname ??)</span> </a>
+						</li>
+						<li class="des">
+							<a href="javascript:;" >#(user.signature ??)</a>
+						</li>
+					</ul>
+
+					<span class="btn_Private_letter">
+						<a href="#(CPATH)/ucenter/letterDetail?acceptId=#(user.id)" target="_blank">
+						<em class="text" >
+							私信
+						</em>
+						</a>
+					</span>
+					#writerFavorite(user.id)
+					<span class="btn-attention guanzhu #(isFav ? 'following':'')" onclick="follow('#(user.id ??)','#(isFav ??)')"><em class="text">#(isFav ? '已关注':'关注')</em></span>
+					#end
+					<img src="../img/nk.jpg" class="QRcode">
+				</div>
+			</div>
+			<div class="left">
+
+				<div>
+					#if(searchValue)
+					<span style="font-size: 20px; font-weight: bold;">为您搜索到以下结果:</span>
+					#end
+					<ul class="tab tabul_0">
+						<li class="active" code="a" idx="#tab_0">文章</li>
+						<li class="" code="c" idx="#tab_1">帖子</li>
+						<li class="" code="d" idx="#tab_2">收藏</li>
+					</ul>
+					<ul class="tab tabul_1">
+						<li class="" code="e" idx="#tab_4">关注</li>
+						<li class="" code="f" idx="#tab_5">粉丝</li>
+					</ul>
+				</div>
+
+				<div class="tab-content tabdiv_0">
+					<div class="tab-pane active" id="tab_0">
+						#writerVideoPage(flag="",hasThumbnail="true",orderBy="created",count=10)
+						<ul>
+							#if((videoPage.totalRow)>0)
+							#for(article : videoPage.list)
+							<li class="item">
+								<div class="item-inner y-box">
+									<div class="normal rbox ">
+										<div class="rbox-inner">
+											<div class="title-box" ga_event="article_title_click">
+												<a class="link title" target="_blank" href="#(article.url)">#(article.title ??)</a>
+											</div>
+											<div class="y-box footer">
+												<div class="y-left">
+													<a class="lbtn" target="_blank" >(#(article.view_count))阅读&nbsp;⋅</a>
+													<a class="lbtn comment" target="_blank" href="#(article.url)#respond">&nbsp;(#(article.comment_count))评论&nbsp;</a>
+													<span class="lbtn">⋅&nbsp;发布于 #date(article.created,'yyyy-MM-dd')</span>
+												</div>
+												<!--<div class="y-right">
+													<a class="lbtn Cancel_collection" target="_blank" href="javascript:;">取消收藏⋅</a>
+												</div>-->
+											</div>
+										</div>
+									</div>
+									<div class="lbox">
+										<a class="img-wrap" target="_blank" href="#(article.url)">
+											<img alt="" src="#(article.showImage ?? '/templates/ant/images/no.jpg')">
+										</a>
+									</div>
+								</div>
+							</li>
+							#end
+							#videoPaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="cc",pageItemsName="videoPages")
+							<nav class="navigation pagination" role="navigation"><div class="nav-links">
+
+								#for(page : videoPages)
+								<a class="page-numbers #(page.style ??)" href="#(page.url ??)">#(page.text ??)</a>
+								#end
+							</div></nav>
+							#end
+							#end
+
+						</ul>
+						#end
+					</div>
+					<div class="tab-pane" id="tab_1">
+						#writerClubPage(flag="",hasThumbnail="true",orderBy="created",count=10)
+
+						<ul>
+							#if(writerClubPage)
+							#for(article : writerClubPage.list)
+							<li class="item">
+								<div class="item-inner y-box">
+									<div class="normal rbox ">
+										<div class="rbox-inner">
+											<div class="title-box" ga_event="article_title_click">
+												<a class="link title" target="_blank" href="#(article.url)">#(article.title ??)</a>
+											</div>
+											<div class="y-box footer">
+												<div class="y-left">
+													<a class="lbtn" target="_blank" >(#(article.view_count))阅读&nbsp;⋅</a>
+													<a class="lbtn comment" target="_blank" href="#(article.url)#respond">&nbsp;(#(article.comment_count))评论&nbsp;</a>
+													<span class="lbtn">⋅&nbsp;发布于 #date(article.created,'yyyy-MM-dd')</span>
+												</div>
+												<!--<div class="y-right">
+													<a class="lbtn Cancel_collection" target="_blank" href="javascript:;">取消收藏⋅</a>
+												</div>-->
+											</div>
+										</div>
+									</div>
+									<div class="lbox">
+										<a class="img-wrap" target="_blank" href="#(article.url)">
+											<img alt="" src="#(article.showImage ?? '/templates/ant/images/no.jpg')">
+										</a>
+									</div>
+								</div>
+							</li>
+
+							#end
+							#articlePaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="current")
+							<nav class="navigation pagination" role="navigation"><div class="nav-links">
+
+								#for(page : pages)
+								<a class="page-numbers #(page.style ??)" href="#(page.url ??)">#(page.text ??)</a>
+								#end
+							</div></nav>
+							#end
+							#end
+
+
+						</ul>
+
+						#end
+					</div>
+					<div class="tab-pane" id="tab_2">
+						#writerCollectionPage(flag="",hasThumbnail="true",orderBy="created",count=10)
+						<ul>
+							#if((favoritePage.totalRow)>0)
+							#for(article : favoritePage.list)
+							<li class="item">
+								<div class="item-inner y-box">
+									<div class="normal rbox ">
+										<div class="rbox-inner">
+											<div class="title-box" ga_event="article_title_click">
+												<a class="link title" target="_blank" href="#(CPATH)/article/#(article.typeId)">#(article.title ??)</a>
+											</div>
+											<div class="y-box footer">
+												<div class="y-left">
+													<a class="lbtn" target="_blank" >(#(article.read))阅读&nbsp;⋅</a>
+													<a class="lbtn comment" target="_blank" href="#(CPATH)/article/#(article.typeId)#respond">&nbsp;(#(article.comment))评论&nbsp;</a>
+													<span class="lbtn">⋅&nbsp;发布于 #date(article.startTime,'yyyy-MM-dd')</span>
+												</div>
+												<!--<div class="y-right">
+													<a class="lbtn Cancel_collection" target="_blank" href="javascript:;">取消收藏⋅</a>
+												</div>-->
+											</div>
+										</div>
+									</div>
+									<div class="lbox">
+										<a class="img-wrap" target="_blank" href="#(CPATH)/article/#(article.typeId)">
+											<img alt="" src="#(article.thumbnail ?? '/templates/ant/images/no.jpg')">
+										</a>
+									</div>
+								</div>
+							</li>
+							#end
+							#clubPaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="current",pageItemsName="collectionPage")
+							<nav class="navigation pagination" role="navigation"><div class="nav-links">
+
+								#for(collection : collectionPage)
+								<a class="page-numbers #(collection.style ??)" href="#(collection.url ??)">#(collection.text ??)</a>
+								#end
+							</div></nav>
+							#end
+							#end
+
+						</ul>
+						#end
+					</div>
+				</div>
+				<div class="tab-content tabdiv_1">
+					<div class="tab-pane active" id="tab_4">
+						#if((master.id)==(user.id))
+							#writerFollow(user.id)
+							<ul class="media">
+								#if(follows)
+								#for(follow:follows)
+								<li>
+									<dl class="media-list">
+										<dd class="avatar-wrap">
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)"><img alt="" src="#(follow.avatar);"></a>
+										</dd>
+										<dd>
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)">
+												<h3>#(follow.nickname) <em class="tth"></em></h3> </a>
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)">
+												<p>#(follow.signature)</p>
+											</a>
+										</dd>
+										<dd class="relation">
+											#writerFavorite(follow.id)
+											<div><span class="btn-attention #(isFav ? 'following':'')" onclick="follow('#(follow.id ??)','#(isFav ??)')"><em class="text">#(isFav ? '已关注':'关注')</em></span></div>
+											#end
+										</dd>
+									</dl>
+								</li>
+								#end
+								#end
+							</ul>
+							#end
+						#else
+							#writerFollow(user.id)
+							<ul class="media">
+								#if(follows)
+								#for(follow:follows)
+								<li>
+									<dl class="media-list">
+										<dd class="avatar-wrap">
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)"><img alt="" src="#(follow.avatar);"></a>
+										</dd>
+										<dd>
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)">
+												<h3>#(follow.nickname) <em class="tth"></em></h3> </a>
+											<a target="_blank" href="#(CPATH)/writer/#(follow.id)">
+												<p>#(follow.signature)</p>
+											</a>
+										</dd>
+										<dd class="relation">
+											#writerFavorite(follow.id)
+											<div><span class="btn-attention #(isFav ? 'following':'')" onclick="follow('#(follow.id ??)','#(isFav ??)')"><em class="text">#(isFav ? '已关注':'关注')</em></span></div>
+											#end
+										</dd>
+									</dl>
+								</li>
+								#end
+								#end
+							</ul>
+							#end
+						#end
+
+
+					</div>
+					<div class="tab-pane" id="tab_5">
+						#if((master.id)==(user.id))
+							#writerFans(user.id)
+							<ul class="media">
+								#if(fans)
+								#for(fan:fans)
+								<li>
+									<dl class="media-list">
+										<dd class="avatar-wrap">
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)"><img alt="" src="#(fan.avatar);"></a>
+										</dd>
+										<dd>
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)">
+												<h3>#(fan.nickname) <em class="tth"></em></h3> </a>
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)">
+												<p>#(fan.signature)</p>
+											</a>
+										</dd>
+										<dd class="relation">
+											#writerFavorite(fan.id)
+											<div><span class="btn-attention #(isFav ? 'following':'')" onclick="follow('#(fan.id ??)','#(isFav ??)')"><em class="text">关注</em></span></div>
+											#end
+										</dd>
+									</dl>
+								</li>
+								#end
+								#end
+							</ul>
+							#end
+						#else
+							#writerFans(user.id)
+							<ul class="media">
+								#if(fans)
+								#for(fan:fans)
+								<li>
+									<dl class="media-list">
+										<dd class="avatar-wrap">
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)"><img alt="" src="#(fan.avatar);"></a>
+										</dd>
+										<dd>
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)">
+												<h3>#(fan.nickname) <em class="tth"></em></h3> </a>
+											<a target="_blank" href="#(CPATH)/writer/#(fan.id)">
+												<p>#(fan.signature)</p>
+											</a>
+										</dd>
+										<dd class="relation">
+											#writerFavorite(fan.id)
+											<div><span class="btn-attention #(isFav ? 'following':'')" onclick="follow('#(fan.id ??)','#(isFav ??)')"><em class="text">关注</em></span></div>
+											#end
+										</dd>
+									</dl>
+								</li>
+								#end
+								#end
+							</ul>
+							#end
+						#end
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div riot-tag="statistics">
+					<dl class="statistics">
+						<dd>
+							<a ga_event="nav_user_list" href="javascript:;">
+								<h3 number="479"><em class="y-number"><i>#(followNum ??)</i></em></h3>
+								<p>关注</p>
+							</a>
+						</dd>
+						<dd>
+							<a ga_event="nav_user_list" href="javascript:;">
+								<h3 number="479"><em class="y-number"><i>#(fansNum ??)</i></em></h3>
+								<p>粉丝</p>
+							</a>
+						</dd>
+						<dt>
+							<a ga_event="nav_user_list" href="javascript:;">
+								<h3 number="479"><em class="y-number"><i>#(goodNum ??)</i></em></h3>
+								<p>点赞</p>
+							</a>
+						</dt>
+					</dl>
+				</div>
+			</div>
+
+		</div>
+		<span class="top" style="right:200px"></span>
+	#end
+	</body>
+
+	<script src="./js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/writer.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+        function follow(writerId,isFav) {
+            console.log(writerId)
+            if(isFav==null||isFav==""||isFav.length==0){
+                $.ajax({
+                    type: "post",
+                    url: "#(CPATH)/writer/addFollow",
+                    data: {"writerId":writerId},//需要传递的参数
+                    dataType: "json",//数据响应格式
+                    success: function(data){
+                        if(data.state=="ok"){
+                            location.reload();
+                        }else {
+                            alert("操作失败")
+                        }
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "get",
+                    url: "#(CPATH)/writer/delFollow",
+                    data: {"writerId":writerId},//需要传递的参数
+                    dataType: "json",//数据响应格式
+                    success: function(data){
+                        if(data.state=="ok"){
+                            location.reload();
+
+                        }else {
+                            alert("操作失败")
+                        }
+                    }
+                });
+            }
+
+        }
+
+	</script>
+
+</html>

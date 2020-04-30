@@ -1,0 +1,97 @@
+#@ucenter_layout()
+
+#define script()
+<script>
+    function follow(writerId,isFav) {
+        console.log(writerId)
+        if(isFav==null||isFav==""||isFav.length==0){
+            $.ajax({
+                type: "post",
+                url: "#(CPATH)/writer/addFollow",
+                data: {"writerId":writerId},//需要传递的参数
+                dataType: "json",//数据响应格式
+                success: function(data){
+                    if(data.state=="ok"){
+                        location.reload();
+                    }else {
+                        alert("操作失败")
+                    }
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: "get",
+                url: "#(CPATH)/writer/delFollow",
+                data: {"writerId":writerId},//需要传递的参数
+                dataType: "json",//数据响应格式
+                success: function(data){
+                    if(data.state=="ok"){
+                        location.reload();
+
+                    }else {
+                        alert("操作失败")
+                    }
+                }
+            });
+        }
+
+    }
+</script>
+#end
+
+#define css()
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/Fans_attention.css" />
+<style>
+
+</style>
+#end
+
+#define content()
+<div class="personalMain wrapper700">
+	<div class="personalMain_con">
+		<h3 class="L">关注与粉丝</h3>
+		<dl class="smlMenu L">
+			<dd>
+				<div class="searchFriend">
+					<form name="searchForm" action="#(CPATH)/ucenter/searchFollow" method="get">
+						<input type="hidden" id="articleStatus" name="para" value='#(para ?? "follow")'>
+						<input type="text" value="" class="friendName" id="friendName" placeholder="请输入昵称" name="centerName" value="#(keyValue ??)">
+						<div class="y-right btn-submit"> <button type="submit" href="javascript:;"> <i class="y-icon icon-search" ></i> </button> </div>
+					</form>
+				</div>
+				<a class="#(para==follow ? '':'act')" href="#(CPATH)/ucenter/follow?action=follow">关注<em>#(centerFollowNum ?? '0')</em></a>
+				<a class="#(para==follow ? 'act':'')" href="#(CPATH)/ucenter/follow?action=fans">粉丝 <em>#(centerFansNum ?? '0')</em></a>
+			</dd>
+		</dl>
+		<ul class="friendsList newsList">
+			<li class="headTitBox clearfix haveBg">
+				<span class="titBox">用户</span>
+				<span class="send">公司</span>
+<!--					<span class="time">注册时间</span>-->
+				<span class="btnBox">操作</span>
+			</li>
+			#centerFollow()
+			#if(centerFollows)
+				#for(follow:centerFollows)
+				<li>
+					<span class="titBox">
+						<a href="#(CPATH)/writer/#(follow.id)" target="_blank">
+							<img class="img" src="#(follow.avatar)">
+						</a>
+						<a class="friendUser" href="#(CPATH)/writer/#(follow.id)" target="_blank">#(follow.nickname)</a>
+					</span>
+					<a href="http://www.szsouthtech.com"><span class="send">深圳市南科信息科技有限公司</span></a>
+	<!--					<span class="time">2020-04-22 10:27:24</span>-->
+					<span class="btnBox">
+						<a href="javascript:;" class="followBtn redBtn act" onclick="follow('#(follow.id ??)','#(follow.id ??)')">已关注</a>
+						<a href="#(CPATH)/ucenter/letterDetail?acceptId=#(follow.id)" class="sendLetterBtn redWhiteBtn">私信</a>
+					</span>
+				</li>
+				#end
+			#end
+			#end
+		</ul>
+	</div>
+</div>
+#end

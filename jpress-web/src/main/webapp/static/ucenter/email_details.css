@@ -1,0 +1,304 @@
+body{
+	background-color: #eee;
+}
+#wrapper {
+    width: 1020px;
+    background-color: #fff;
+}
+
+#wrapper {
+    width: 950px;
+    margin-left: 230px;
+}
+#content {
+    min-height: 892px;
+}
+html h1 {
+    font-size: 26px;
+    margin-left: 15px;
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+h1 {
+    word-wrap: break-word;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #494949;
+    margin: 0;
+    padding: 0 0 15px 0;
+    line-height: 1.1;
+}
+.clearfix {
+    display: block;
+}
+#wrapper .grid-16-8 .article {
+    width: 675px;
+}
+
+.grid-16-8 .article {
+    float: left;
+    width: 590px;
+    padding-right: 40px;
+}
+.doumail-hd {
+    padding: 12px 15px;
+    color: #333;
+    background: #fff6ee;
+}
+.doumail-bd {
+    margin-bottom: 50px;
+}
+.doumail-bd .split-line {
+    display: inline-block;
+    zoom: 1;
+    width: 100%;
+    margin: 40px 0 20px;
+    text-align: center;
+    color: #999;
+    border-top: 1px solid #eee;
+    line-height: 1px;
+}
+.doumail-bd .split-line i {
+    padding: 0 1em;
+    *line-height: 1.2;
+    *position: relative;
+    *top: -6px;
+    background: #fff;
+}
+.doumail-bd .chat {
+    position: relative;
+    padding-bottom: 25px;
+    display: inline-block;
+    width: 100%;
+    zoom: 1;
+}
+.doumail-bd .chat .info {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.doumail-bd .chat .info .time {
+    color: #999;
+}
+.doumail-bd .chat .pic {
+    float: left;
+    margin-right: 20px;
+    position: relative;
+        margin-left: 15px;
+}
+.doumail-bd .chat .pic img {
+    width: 32px;
+    height: 32px;
+}
+
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+.doumail-bd .chat .msgcontent {
+    display: inline-block;
+    zoom: 1;
+    width: 460px;
+    margin-top: -3px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.doumail-bd .chat .msgcontent p {
+    margin: 0;
+    color: #222;
+    line-height: 1.5;
+}
+.doumail-bd .chat .operations {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+}
+.doumail-bd .chat .operations a:link, .doumail-bd .chat .operations a:visited, .doumail-bd .chat .operations a:hover, .doumail-bd .chat .operations a:active {
+    color: #999;
+}
+reply-form textarea, [riot-tag="reply-form"] textarea, [data-is="reply-form"] textarea {
+    width: 615px;
+    margin-left: 52px;
+    height: 82px;
+    resize: vertical;
+}
+
+textarea {
+    border: 1px solid #ccc;
+    padding: 3px;
+    font-size: 14px;
+}
+textarea {
+    font-family: Arial;
+    overflow: auto;
+}
+reply-form .toolbar, [riot-tag="reply-form"] .toolbar, [data-is="reply-form"] .toolbar {
+    margin-top: 10px;
+    margin-left: 52px;
+}
+reply-form .item-photo-selector, [riot-tag="reply-form"] .item-photo-selector, [data-is="reply-form"] .item-photo-selector {
+    float: left;
+}
+.item-photo-selector{
+	cursor: pointer;
+	position: relative;
+}
+reply-form .item-submit, [riot-tag="reply-form"] .item-submit, [data-is="reply-form"] .item-submit {
+    text-align: right;
+    float: right;
+}
+.lnk-flat, .lnk-confirm, .bn-flat {
+    display: -moz-inline-box;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bbb #bbb #999;
+    *display: inline;
+    *zoom: 1;
+    color: #444;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+reply-form .item-submit, [riot-tag="reply-form"] .item-submit, [data-is="reply-form"] .item-submit {
+    text-align: right;
+    float: right;
+}
+.lnk-flat, .lnk-confirm, .bn-flat input {
+    border: none;
+    height: 25px;
+    padding: 0 14px;
+    color: #333;
+    font-size: 12px;
+    margin: 0 !important;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-image: -moz-linear-gradient(-90deg, #fcfcfc 0, #e9e9e9 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fcfcfc), color-stop(1, #e9e9e9));
+}
+photo-selector .icon, [riot-tag="photo-selector"] .icon, [data-is="photo-selector"] .icon {
+    width: 17px;
+    vertical-align: middle;
+}
+photo-selector .help-text, [riot-tag="photo-selector"] .help-text, [data-is="photo-selector"] .help-text {
+    font-size: 14px;
+    vertical-align: middle;
+}
+.doumail-ft {
+    padding: 15px 0;
+    text-align: right;
+    border-top: 1px dashed #dcdcdc;
+}
+.doumail-ft input {
+    padding-top: 2px;
+    line-height: 1.2;
+}
+a:visited {
+    color: #666699;
+    text-decoration: none;
+}
+
+a:link {
+    color: #37a;
+    text-decoration: none;
+}
+a:visited {
+    color: #669;
+    text-decoration: none;
+}
+a:link {
+    color: #37a;
+    text-decoration: none;
+}
+a {
+    cursor: pointer;
+}
+photo-preview, [riot-tag="photo-preview"], [data-is="photo-preview"] {
+    display: block;
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 30px;
+    margin-left: 52px;
+}
+.one-photo {
+    position: relative;
+    line-height: 0;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+
+}
+.one-photo:after{
+	clear: both;
+}
+.doumail-bd .chat .msgcontent .wrap-pic {
+    margin-top: 10px;
+    width: 228px;
+    height: 153px;
+    border: 1px solid #f5f5f5;
+    position: relative;
+    overflow: hidden;
+    font-size: 0;
+    white-space: nowrap;
+    display: inline-block;
+}
+.doumail-bd .chat .msgcontent .cont-pic {
+    text-align: center;
+    letter-spacing: -0.31em;
+}
+.doumail-bd .chat .msgcontent .cont-pic img:hover, .doumail-bd .chat .msgcontent .cont-pic img:active {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+.doumail-bd .chat .msgcontent .cont-pic img {
+    vertical-align: middle;
+    cursor: pointer;
+    max-width: 228px;
+}
+photo-selector div input{
+	opacity: 0;
+    position: absolute;
+    top: -1px;
+    cursor: pointer;
+}
+.photo-preview{
+	display: block;
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 30px;
+    margin-left: 52px;
+    display: none;
+    position: relative;
+}
+.one-photo{
+	position: relative;
+    line-height: 0;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+}
+.one-photo img,.one-photo div{
+	width: 100%;
+	height: 100%;
+}
+
+.photo-preview a{
+    display: inline-block;
+    position: absolute;
+    top: 88px;
+    left: 150px;
+}

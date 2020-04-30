@@ -1,0 +1,143 @@
+#include("_layout.html")
+#@layout()
+
+#define content()
+
+<script>
+(function ($) {
+  $(function () {
+          $("body").removeClass("home blog wp-custom-logo hfeed");
+          $("body").addClass("archive category category-auto category-7 wp-custom-logo hfeed");
+          $("#primary").show();
+  })
+})(jQuery);
+</script>
+
+
+
+<div id="primary" class="content-area clear" style="display:none;">
+
+    <div class="content-wrapper">
+
+      #articlePage(flag="",hasThumbnail="true",orderBy="created",count=10)
+      <main id="main" class="site-main clear">
+
+        <div class="breadcrumbs clear">
+          <h1>
+            <span class="title">#(category.title ??)</span>
+          </h1>
+        </div><!-- .breadcrumbs -->
+
+
+        <div id="recent-content" class="content-list clear">
+            #for(article : articlePage.list)
+
+            <div 
+            class="clear post type-post status-publish format-standard has-post-thumbnail hentry category-finance tag-28 tag-30 tag-39">
+  
+            <h2 class="entry-title"><a
+                href="#(article.url)" target="_blank">#(article.title)</a>
+            </h2>
+  
+  
+            <a class="thumbnail-link" href="#(article.url)" target="_blank">
+              <div class="thumbnail-wrap" style="
+              height: 140px;
+          ">
+                <img width="280" height="180" src="#(article.showImage ?? '/templates/ant/images/no.jpg')"
+                  class="attachment-zimeiti_2_list_thumb size-zimeiti_2_list_thumb wp-post-image"
+                  alt=""> </div><!-- .thumbnail-wrap -->
+            </a>
+  
+  
+            <div class="entry-overview 	">
+  
+              <div class="entry-meta first-line">
+  
+  
+                <span class="entry-author">
+  
+                  <a href="#(CPATH)/writer/#(article.user.id)" target="_blank">
+  
+                    <img alt="" src="#(article.user.avatar  ?? '/templates/ant/images/no.jpg')"
+                    
+                      class="avatar avatar-80 photo" height="80" width="80">
+                      #(article.user.username)
+                  </a>
+  
+                </span><!-- .entry-author -->
+  
+  
+  
+                <span class="entry-date">
+                  发布于 #date(article.created,'yyyy-MM-dd')</span><!-- .entry-date -->
+  
+  
+              </div>
+  
+  
+  
+  
+              <div class="entry-summary">
+                <p> #if (article.text)
+                    #maxLength(article.text,100)....
+                    #else 
+                    #(article.summary)..
+                    #end</p>
+              </div><!-- .entry-summary -->
+  
+  
+            </div><!-- .entry-overview -->
+  
+            <div class="entry-meta second-line">
+  
+  
+              <span class="entry-category">
+                  #articleCategories(article.id,"category")
+                  #for(category : categories)
+                      <a
+                      href="#(category.url ??)"
+                      target="_blank">#(category.title ??)</a>
+                      #end
+                  #end
+              </span><!-- .entry-category -->
+  
+  
+             
+              <!-- .entry-like -->
+  
+  
+              <span class="entry-comment"><a
+                  href="#(article.url)#respond"
+                  class="comments-link">评论(#(article.comment_count))</a></span>
+  
+              <span class="entry-views">阅读<span class="view-count">(#(article.view_count))</span> </span>
+  
+            </div><!-- .entry-meta -->
+          </div>
+  
+            #end
+  
+           
+
+        </div><!-- #recent-content -->
+
+      </main><!-- .site-main -->
+
+      #articlePaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="current")
+      <nav class="navigation pagination" role="navigation"><div class="nav-links">
+        
+          #for(page : pages)
+          <a class="page-numbers #(page.style ??)" href="#(page.url ??)">#(page.text ??)</a>
+          #end
+      </div></nav>
+      #end
+      #end
+
+      
+    </div><!-- .content-wrapper -->
+
+  </div><!-- #primary -->
+#include("_rightbar.html")
+
+#end

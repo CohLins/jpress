@@ -1,0 +1,73 @@
+#@layout()
+
+
+#define content()
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            优惠券使用记录
+            <small>Coupon Used Record</small>
+        </h1>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body ">
+
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th style="width: 15%">优惠码</th>
+                                <th style="width: 15%">用户</th>
+                                <th style="width: 10%">订单</th>
+                                <th style="width: 25%">优惠券</th>
+                                <th style="width: 10%">优惠券归属用户</th>
+                                <th style="width: 10%">使用时间</th>
+                            </tr>
+                            #for(record : page.list ??)
+                            <tr class="jp-actiontr">
+                                <td>
+                                    <strong>
+                                        #(record.code ??)
+                                    </strong>
+                                </td>
+                                <td>
+                                    <a href="#(CPATH)/admin/user/detail/#(record.used_user_id ??)">#(record.used_user_nickname ??)</a>
+                                </td>
+                                <td>
+                                    <a href="#(CPATH)/admin/order/detail/#(record.used_order_id ??)">#(record.userOrder.product_title ??)</a>
+                                </td>
+                                <td>#(record.couponCode.title ??)</td>
+                                <td>
+                                    <a href="#(CPATH)/admin/user/detail/#(record.code_user_id ??)"> #(record.code_user_nickname ??)</a>
+                                </td>
+                                <td>#date(record.created ??)</td>
+                            </tr>
+                            #end
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                #@_paginate()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+</div>
+#end

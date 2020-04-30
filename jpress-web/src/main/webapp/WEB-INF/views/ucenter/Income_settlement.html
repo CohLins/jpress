@@ -1,0 +1,53 @@
+#@ucenter_layout()
+#define css()
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/Income_settlement.css" />
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/layui/css/layui.css" />
+#end
+#define content()
+		<div class="Income_jump">
+			<div class="Income_jump_out">
+				<div class="Income_setting">
+					<span>结算提现</span>
+					<a href="javascript:;"><img src="#(CPATH)/static/ucenter/setting.png">结算账号设置</a>
+				</div>
+				<div class="cutting"></div>
+				<span>结算数据</span>
+				<div class="Income_jump_con">
+					<div>
+						<span>8888</span>
+						<span>累计收益</span>
+					</div>
+					<div>
+						<span>8888</span>
+						<span>可提现金额</span>
+					</div>
+					<div>
+						<span>8888</span>
+						<span>累计提现金额</span>
+					</div>
+				</div>
+				<a href="javascript:;" class="Cash_withdrawal">申请提现</a>
+				<div class="Application_Details">
+					<span>结算详细</span>
+					<span>单位：元</span>
+
+				</div>
+				<div class="datatable">
+					<table class="layui-hide" id="demo" lay-filter="test"></table>
+					<script type="text/html" id="barDemo">
+						<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+						<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+					</script>
+					<script type="text/html" id="toolbar">
+						<a class="toolbtn" lay-event="deletbtn">删除</a>
+						<a class="toolbtn" lay-event="quitbtn">离职</a>
+					</script>
+				</div>
+			</div>
+		</div>
+#end
+#define script()
+	<script src="#(CPATH)/static/ucenter/jQuery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="#(CPATH)/static/ucenter/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="#(CPATH)/static/ucenter/Income_settlement.js" type="text/javascript" charset="utf-8"></script>
+#end

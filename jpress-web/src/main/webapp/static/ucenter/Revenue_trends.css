@@ -1,0 +1,207 @@
+body{
+	background: #eee;
+}
+.Revenue_trends{
+	width: 1020px;
+	margin-top: 12px;
+	min-height: 892px;
+	margin-left: 230px;
+	z-index: 800;	
+}
+.Revenue_trends_out{
+	width: 980px;
+	min-height: 892px;
+	margin: 0 20px;
+	background: #fff;
+}
+.Revenue_trends_con {
+	padding: 20px 30px;
+	display: flex;
+	width: calc(100% - 60px);
+	font-size: 14px;
+}
+
+.Revenue_trends_con div {
+	flex: 1;
+	height: 120px;
+	background-color: #eee;
+	margin:0 40px;
+	border-radius: 10px;
+}
+
+.Revenue_trends_con div:last-child {
+	margin-right: 40px !important;
+}
+.Revenue_trends_con div span {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+.Revenue_trends_con div span:last-child{
+    margin-top: 12px !important;
+    font-family: 'byte'; /*'byte bold';*/
+    font-size: 30px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #222222;
+}
+.Revenue_trends_con div span:first-child {
+    margin-top: 20px !important;
+}
+.cutting1 {
+	width: 900px;
+	height: 2px;
+	background-color: #c7bcbc;
+	margin: 0 auto;
+	margin-top: 16px !important;
+	margin-bottom: 16px;
+}
+.go_Cash_withdrawal{
+	display: block;
+	color: #f04142;
+	border: 1px solid #f04142;
+	/*padding: 10px 15px;*/
+	margin: 0 auto;
+	width: 120px;
+	line-height: 28px;
+	height: 28px;
+	border-radius: 5px;
+	text-decoration: none;
+	margin-right: 80px;	
+	text-align: center;
+}
+.go_Cash_withdrawal:hover{
+	color: #f04142;
+	background-color: #FFF2F2;	
+}
+.Revenue_trends_out>span{
+	display: block;
+	margin-left: 80px;
+}
+.mune_lxc{
+	width: calc(100% - 120px);
+	margin: 20px 60px;
+	line-height: 36px;
+	height: 36px;
+}
+.mune_lxc ul:first-child>span{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+	color: #a5a0a0;
+}
+.mune_lxc ul:first-child{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+}
+.mune_lxc ul:first-child li{
+	float: left;
+	padding: 0 15px;
+	
+}
+.mune_lxc ul:first-child .active li{
+	color: #f04142;
+}
+.icon_lxc {
+    position: absolute;
+    right: 10px;
+    top: 33%;
+    margin-top: -10px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #dcdcdc;
+}
+#Date_receiving{
+	border-radius: 8px;
+}
+.timeselec_lxc{
+	width: 220px;
+	margin-left: 12px;
+}
+.mune_lxc ul:last-child{
+	display: inline-block;
+	line-height: 36px;
+	float: right;
+}
+.mune_lxc ul:last-child>span{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+	color: #bfbfbf;
+}
+.mune_lxc ul:last-child{
+	display: inline-block;
+	line-height: 36px;
+}
+.mune_lxc ul:last-child li{
+	float: left;
+	margin-left: 15px;
+	color: #bfbfbf;
+}
+.mune_lxc ul:last-child .active li{
+	color: #000 !important;
+}
+#Data_list.active,#Trend_chart.active{
+	display: block !important;
+}
+#Trend_chart{
+	max-width: 916px;
+	height: 560px;
+/*	background-color: lightcoral;*/
+	margin: 0 auto;
+	display: none;
+	padding: 20px 0 30px;
+}
+#Data_list{
+	width: 916px;
+	height: 560px;
+/*	background-color: lightblue;*/
+	margin: 0 auto;
+	display: none;
+}
+/*****************layui*******************/
+#Data_list .layui-table-cell {
+    text-align: center;
+}
+#Data_list .layui-table-cell {
+    height: 38px;
+    line-height: 38px;
+}
+#Data_list .layui-table-view{
+    border:none !important;
+}
+#Data_list .layui-table-view .layui-table td,#Data_list .layui-table-view .layui-table th {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: #e6e6e6 !important;
+}
+#Data_list .layui-table-header {
+    border-width: 1px;
+    overflow: hidden;
+}
+#Data_list .layui-table-page .layui-laypage {
+    float: right;
+}
+#Data_list .layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #F44336 !important;
+}
+/*************************/
+.highcharts-data-table table{
+	margin: 0 auto;
+	border: 1px lightblue solid;
+}
+.highcharts-data-table caption{
+	line-height: 36px;
+}
+.highcharts-data-table{
+	padding-bottom: 40px;
+}
+.highcharts-data-table table td,.highcharts-data-table table th{
+	min-width: 120px;
+	text-align: center;
+	line-height: 36px;
+	border: 1px lightblue solid;
+}

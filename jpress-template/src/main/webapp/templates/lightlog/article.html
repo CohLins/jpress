@@ -1,0 +1,56 @@
+#include("./layout.html")
+#@layout()
+
+#define css()
+<link href="highlight/styles/railscasts.css" rel="stylesheet">
+<link href="/static/commons/article.css" rel="stylesheet">
+#end
+#define script()
+<script src="/static/components/jquery/jquery.form.min.js"></script>
+<script src="/static/commons/article.js"></script>
+<script src="highlight/highlight.pack.js"></script>
+<script>
+
+    hljs.initHighlightingOnLoad();
+
+</script>
+#end
+
+#define content()
+<div class="container ll-cantainer">
+    <div class="ll-artical-content">
+        <h2 class="ll-artical-title">#(article.title ??)</h2>
+        <div class="ll-card-tag">
+            <div><i class="fa fa-clock-o"></i>#date(article.created)</div>
+            <div><i class="fa fa-eye"></i> #(article.view_count ?? 0)</div>
+            <div><i class="fa fa-commenting-o"></i> #(article.comment_count ?? 0)</div>
+        </div>
+        <div class="ll-artical">
+            #(article.content ??)
+        </div>
+
+        #relevantArticles(article)
+        <div class="recommend-panel">
+            <h4 class="ll-title">相关文章</h4>
+            <div class="card-deck">
+                #for(article :relevantArticles )
+                <div class="card ll-panel">
+                    <a class="recommend-panel-link" href="#(article.url ??)">
+                        <div class="recommend-panel-top">
+                            <img src="#(article.thumbnail ?? 'img/blog-image.jpg')" class="img-fluid" alt="#(article.title ??)">
+                        </div>
+                        <div class="recommend-panel-bottom">
+                            #(article.title ??)
+                        </div>
+                    </a>
+                </div>
+                #end
+            </div>
+        </div>
+        #end
+
+        #@defaultArticleCommentPage()
+
+    </div>
+</div>
+#end

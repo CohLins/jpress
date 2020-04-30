@@ -1,0 +1,167 @@
+body {
+	background: #eee;
+}
+
+.Income_jump {
+	width: 1020px;
+	margin-top: 12px;
+	min-height: 892px;
+	margin-left: 230px;
+	z-index: 800;
+}
+
+.Income_jump_con {
+	padding: 20px 30px;
+	display: flex;
+	width: calc(100% - 60px);
+	font-size: 14px;
+}
+
+.Income_jump_con div {
+	flex: 1;
+	height: 150px;
+	background-color: #eee;
+	margin-right: 20px;
+	border-radius: 10px;
+}
+
+.Income_jump_con div:last-child {
+	margin-right: 0px !important;
+}
+
+.Income_jump_con div span {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.cutting {
+	width: 900px;
+	height: 2px;
+	background-color: #c7bcbc;
+	margin: 0 auto;
+	margin-top: 10px !important;
+	margin-bottom: 10px;
+}
+
+.Income_jump_con div span:first-child {
+	margin-top: 36px !important;
+	font-family: 'byte bold';
+	font-size: 36px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	letter-spacing: normal;
+	color: #222222;
+}
+
+.Income_jump_con div:hover {
+	background-color: #ffe4e8;
+}
+
+.Income_jump_out {
+	width: 980px;
+	min-height: 892px;
+	margin: 0 20px;
+	background: #fff;
+}
+
+.Income_jump_out>span {
+	margin-left: 30px;
+}
+
+.Income_setting>a {
+	text-decoration: none;
+	color: #000000;
+	display: inline-block;
+	float: right;
+	margin-right: 30px;
+}
+
+.Income_setting>span {
+	display: inline-block;
+	margin-left: 30px;
+	line-height: 36px;
+}
+
+.Income_setting>a>img {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	line-height: 36px;
+	margin-right: 5px;
+}
+
+.Income_setting {
+	line-height: 48px;
+}
+
+.Cash_withdrawal {
+	display: block;
+	color: #f04142;
+	border: 1px solid #f04142;
+	/*padding: 10px 15px;*/
+	margin: 0 auto;
+	width: 120px;
+	line-height: 28px;
+	height: 28px;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
+}
+.Cash_withdrawal:hover{
+	color: #f04142;
+	background-color: #FFF2F2;
+}
+.Application_Details span:first-child {
+	display: inline-block;
+	float: left;
+	margin-left: 30px;
+}
+
+.Application_Details span:last-child {
+	display: inline-block;
+	float: right;
+	font-size: 14px;
+	color: #999;
+	font-weight: 400;
+	margin-right: 30px;
+}
+
+.Application_Details {
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+}
+
+.datatable {
+	margin: 0 auto;
+	width: calc(100% - 60px);
+	padding-bottom: 15px;
+}
+/*****************layui*******************/
+.datatable .layui-table-cell {
+    text-align: center;
+}
+.datatable .layui-table-cell {
+    height: 38px;
+    line-height: 38px;
+}
+.datatable .layui-table-view{
+    border:none !important;
+}
+.datatable .layui-table-view .layui-table td,.datatable .layui-table-view .layui-table th {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: #e6e6e6 !important;
+}
+.datatable .layui-table-header {
+    border-width: 1px;
+    overflow: hidden;
+}
+.datatable .layui-table-page .layui-laypage {
+    float: right;
+}
+.datatable .layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #F44336 !important;
+}

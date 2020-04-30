@@ -1,0 +1,134 @@
+body{
+	background: #eee;
+}
+.Data_analysis{
+	width: 1020px;
+	margin-top: 12px;
+	min-height: 892px;
+	margin-left: 230px;
+	z-index: 800;	
+}
+.Data_analysis_out{
+	width: 980px;
+	min-height: 892px;
+	margin: 0 20px;
+	background: #fff;
+}
+.Data_analysis_con {
+	padding: 20px 30px;
+	display: flex;
+	width: calc(100% - 60px);
+	font-size: 14px;
+}
+.cutting2 {
+	width: 900px;
+	height: 2px;
+	background-color: #c7bcbc;
+	margin: 0 auto;
+	margin-top: 16px !important;
+	margin-bottom: 16px;
+}
+.mune_DA{
+	width: calc(100% - 120px);
+	margin: 20px 60px;
+	line-height: 36px;
+	height: 36px;
+}
+.mune_DA ul>span{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+	color: #a5a0a0;
+}
+.mune_DA ul{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+}
+.mune_DA ul li{
+	float: left;
+	padding: 0 15px;
+	
+}
+.mune_DA ul  li.active{
+	color: #f04142;
+}
+.icon_DA {
+    position: absolute;
+    right: 10px;
+    top: 33%;
+    margin-top: -10px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #dcdcdc;
+}
+#Date_receiving_DA{
+	border-radius: 8px;
+}
+.Data_analysis_timeselec{
+	width: 220px;
+	margin-left: 12px;
+}
+.mune_DA ul{
+	display: inline-block;
+	line-height: 36px;
+	float: left;
+}
+#Data_list_DA{
+	max-width: 916px;
+	height: 560px;
+/*	background-color: lightcoral;*/
+	margin: 0 auto;
+	margin-top: 40px;
+}
+/*****************layui*******************/
+#Data_list_DA .layui-table-cell {
+    text-align: center;
+}
+#Data_list_DA .layui-table-cell {
+    height: 38px;
+    line-height: 38px;
+}
+#Data_list_DA .layui-table-view{
+    border:none !important;
+}
+#Data_list_DA .layui-table-view .layui-table td,#Data_list_DA .layui-table-view .layui-table th {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: #e6e6e6 !important;
+}
+#Data_list_DA .layui-table-header {
+    border-width: 1px;
+    overflow: hidden;
+}
+#Data_list_DA .layui-table-page .layui-laypage {
+    float: right;
+}
+#Data_list_DA .layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #F44336 !important;
+}
+
+.mune_type{
+	width: 900px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 20px;
+}
+.mune_type li{
+	height: 40px;
+	line-height: 40px;
+	display: inline-block;
+	width: 130px;
+	text-align: center;
+	font-size: 18px;
+	
+}
+.mune_type li:hover{
+	background-color: #FADEE1;
+	border-radius: 8px;
+	color: #f04142;
+}
+.mune_type li.active{
+	border-radius: 8px;
+	color: #f04142;
+}

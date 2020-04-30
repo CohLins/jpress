@@ -1,0 +1,179 @@
+#@ucenter_layout()
+#define script()
+<script src="#(CPATH)/static/ucenter/jQuery.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/user_email.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    /**多选--删除**/
+    $(document).on('click', '.mc_delete', function() {
+        var csarr=[];
+        $("input[name='abox']:checked").each(function() {
+            csarr.push($(this).val())
+        })
+        console.log(csarr);
+        if(csarr.length > 0) {
+			$.ajax({
+				type: "post",
+				url: "#(CPATH)/ucenter/delPanelLetter",
+				data: {
+				    "charIds":csarr.join(";")
+				},
+				//async: false,
+				dataType: 'json',
+				success: function(data) {
+                    if(data.state=="ok"){
+                        location.reload();
+                    }else {
+                        alert("操作失败")
+                    }
+				}
+			});
+        } else {
+            alert('您暂未选择所需删除的信息！')
+        }
+
+    })
+    /**多选--标记**/
+    $(document).on('click', '.mc_markread', function() {
+        var csarr = [];
+        $(".unreadmsg input[name='abox']:checked").each(function() {
+            csarr.push($(this).val())
+        })
+        console.log(csarr);
+        if(csarr.length > 0) {
+            $.ajax({
+                type: "post",
+                url: "#(CPATH)/ucenter/setRead",
+                data: {
+                    "charIds":csarr.join(";")
+                },
+                //async: false,
+                dataType: 'json',
+                success: function(data) {
+                    if(data.state=="ok"){
+                        location.reload();
+                    }else {
+                        alert("操作失败")
+                    }
+                }
+            });
+        } else {
+            alert('暂未选择需被标记为已读的信息！')
+        }
+
+    })
+
+
+//筛选
+    $(document).on('click','#choose',function(e) {
+        e.stopPropagation(); //阻止，删除会出现事件穿透
+        if ($(this).hasClass('on')) {
+            $(this).removeClass('on')
+        } else{
+            $(this).addClass('on')
+        }
+        $(".inbox-filter-list li").removeClass('atv')
+        $(".inbox-filter-list li a").each(function() {
+            if($(this).text() == $('.label span').text()){
+                $(this).parent().addClass('atv');
+            }
+        })
+    })
+    $(document).on('click','.inbox-filter-list li',function(e) {
+        e.stopPropagation(); //阻止，删除会出现事件穿透
+        var val = $(this).find('a').text();
+        $('.label span').text(val);
+        $('.label').removeClass('on');
+    })
+</script>
+#end
+
+#define css()
+	<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/user_email.css" />
+	<title></title>
+#end
+
+#define content()
+	<div id="wrapper">
+		<div id="content">
+			<h1>我的信息</h1>
+			<div class="grid_l clearfix">
+				<div class="article">
+					<div class="doumail-toolbar">
+						<div class="inbox-filter">
+							筛选:
+							<a class="label" href="javascript:;"><span>#(tag ?? '全部信息')</span><i></i></a>
+							<div class="inbox-filter-list" style="display: none;">
+								<ul>
+									<li>
+										<a href="#(CPATH)/ucenter/myLetterChoose?tag=全部信息">全部信息</a>
+									</li>
+									<li>
+										<a href="#(CPATH)/ucenter/myLetterChoose?tag=未读信息">未读信息</a>
+									</li>
+									<li>
+										<a href="#(CPATH)/ucenter/myLetterChoose?tag=已读信息">已读信息</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="tabs">
+							<a href="javascript:;" class="on">信息 (#(unread ?? '0')未读)</a>
+						</div>
+					</div>
+					<div id="doumail-form">
+						<div class="doumail-list">
+							<ul>
+								#if(letterList)
+								#for(letter:letterList)
+								<li class="state-unread #(letter.panelMessageNum==0 ? '':'unreadmsg')">
+									<div class="pic">
+										<a href="zhuye">
+											<img src="#(letter.sendImg)">
+										</a>
+									</div>
+									<div class="title">
+										<div class="sender">
+											<span class="time">#date(letter.createTime,'yyyy-MM-dd')</span>
+											<span class="from"><a href=" ">#(letter.sendName)
+												#if(letter.panelMessageNum!=0)
+												(<span>#(letter.panelMessageNum)</span>)
+												#end
+											</a></span>
+										</div>
+										<a href="https://www.douban.com/doumail/179550609/" class="url">
+											<p>
+												#(letter.content)
+											</p>
+										</a>
+									</div>
+									<div class="select">
+										<input type="checkbox" name="abox" value="#(letter.chatId)">
+									</div>
+								</li>
+								#end
+								#end
+							</ul>
+							<div class="doumail-list-ft">
+								<span class="button-group">
+								<input class="mc_delete" type="submit" value="删除">
+								<input class="mc_markread" type="submit" value="标记为已读">
+								</span>
+								<input name="checkall" type="checkbox">
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="aside">
+					<p class="pl2">&gt;&gt;
+						<a href="#(CPATH)/ucenter/follow?action=follow">给我关注的人发私信</a>
+					</p>
+					<p class="pl2">&gt;&gt;
+						<a href="#(CPATH)/ucenter/follow?action=fans">给我的粉丝发私信</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+#end

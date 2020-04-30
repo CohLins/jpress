@@ -1,0 +1,152 @@
+#@ucenter_layout()
+
+#define script()
+<script src="#(CPATH)/static/ucenter/jQuery.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/email_details.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).on('click','.lnk-delete',function() {
+        var datamid = $(this).attr('data-mid');
+        console.log(datamid);
+        	$.ajax({
+        		type: "get",
+        		url: "#(CPATH)/ucenter/delOnlyLetter",
+        		data: {
+					"id":datamid
+        		},
+        		//async: false,
+        		dataType: 'json',
+        		success: function(data) {
+                    if(data.state=="ok"){
+                        location.reload();
+                    }else {
+                        alert("操作失败")
+                    }
+        		}
+        	});
+    })
+    $(document).on('click','.m_reply',function() {
+        var msg = $('.m_text').val();
+        var img = $('.one-photo img').attr('src').split(',')[1];
+        var accept=$('.bn-flat').attr("value");
+        if (msg == '' && img == '') {
+            alert("您未输入回复信息。");
+        } else{
+			$.ajax({
+				type: "post",
+				url: "#(CPATH)/ucenter/sendLetter",
+				data: {
+					"content":msg,
+					"img":img,
+					"acceptId":accept
+				},
+				//async: false,
+				dataType: 'json',
+				success: function(data) {
+                    if(data.state=="ok"){
+                        location.reload();
+                    }else {
+                        alert("操作失败")
+                    }
+				}
+			});
+        }
+    })
+</script>
+#end
+#define css()
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/email_details.css" />
+#end
+#define content()
+<div id="wrapper">
+			<div id="content">
+				<h1>与#(acceptUser.nickname)的私信</h1>
+				<div class="grid-16-8 clearfix">
+					<div class="article">
+						<div class="doumail-hd">
+							发起于 #date(startTime)
+						</div>											
+						<div class="doumail-bd">
+							<div class="split-line"><i>#date(startTime,'yyyy-MM-dd')</i></div>
+							<!--循环开头-->
+							#if(letterRecord)
+							#for(letter:letterRecord)
+							<div class="chat">
+								<div class="info">
+									<span class="time">#date(letter.createTime)</span>
+								</div>
+								<div class="pic">
+									<a href="#(CPATH)/writer/#(letter.sendId)" target="_blank"><!--这个人的主页-->
+										<img src="#(letter.sendImg)">
+									</a>
+								</div>
+								<div class="msgcontent">
+									<div class="sender">
+										<a href="#(CPATH)/writer/#(letter.sendId)" target="_blank"><!--这个人的主页-->#(letter.sendName)</a>
+									</div>
+									<p>#(letter.content)</p>
+									#if(letter.picUrl)
+									<span class="wrap-pic">
+								        <span class="cont-pic">
+								            <a  href="#(letter.picUrl)" target="_blank" title="查看原图"><img src="#(CPATH)#(letter.picUrl)"></a>
+								        </span>
+									</span>
+									#end
+								</div>
+								<div class="operations">
+									<a href="javascript:;" data-mid="#(letter.id)" class="lnk-delete">删除</a>
+								</div>
+							</div>
+							#end
+							#end
+
+
+							<div class="doumail-reply">
+								<reply-form>
+									<div> 
+										<div class="item item-text"> 
+											<textarea class="m_text" rows="10" cols="80" autocomplete="off"></textarea> 
+										</div>
+										<div class="photo-preview">
+											<div class="one-photo"><img src=""></div>
+											<a href="javascript:;" class="delimg">删除</a>
+										</div>
+										<div class="toolbar">
+											<div class="item-photo-selector">
+												<photo-selector>
+													<div class="m_image"><img class="icon" src="#(CPATH)/static/ucenter/btnbgimg.png"> <span class="help-text">选择图片</span> </div>
+													<div style="display: none;"><input type="file" name="m_image" style="width:78px;" accept="image/jpg,image/jpeg,image/bmp,image/gif,image/png"> </div>
+												</photo-selector>
+											</div>
+											<div class="item-submit"> <span class="bn-flat" value="#(acceptUser.id)"> <input type="submit" class="m_reply" value="回应"> </span> </div>
+										</div>
+									</div>
+								</reply-form>
+							</div>
+						</div>
+
+						<!--<div class="doumail-ft">-->
+							<!--<div>-->
+								<!--<div style="display:none;"><input type="hidden" name="ck" value="WKvt"></div>-->
+								<!--<input type="submit" class="m_delete" value="删除" msg-id="+id">-->
+							<!--</div>-->
+						<!--</div>-->
+
+					</div>
+					<div class="aside">
+
+						<p class="pl2">
+							<a href="#(CPATH)/ucenter/myLetter">&gt;&gt; 返回我的私信</a>
+						</p>
+
+						<p class="pl2">
+							<a href="#(CPATH)/writer/#(acceptUser.id)" target="_blank">&gt;&gt; 去#(acceptUser.nickname)的主页</a>
+						</p>
+					</div>
+					<div class="extra" style="clear: both;">
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+#end

@@ -1,0 +1,199 @@
+#include("_layout.html")
+#@layout()
+
+#define script()
+<script src="#(CPATH)/static/components/jquery/jquery.min.js"></script>
+<script src="#(CPATH)/static/components/jquery/jquery.form.min.js"></script>
+<script src="#(CPATH)/static/components/ckeditor/ckeditor.js"></script>
+<script src="js/main.js"></script>
+<script>
+
+    $('#clubCommentForm').on('submit', function () {
+        if (typeof (CKEDITOR) != "undefined") {
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+        }
+        $(this).ajaxSubmit({
+            type: "post",
+            success: function (data) {
+                if (data.state == "ok") {
+                    location.href = data.url+'#comments';
+                    location.reload();
+                } else {
+                    alert(data.message);
+                    if(data.code && data.code == 1){
+                        location.href = jpress.cpath + '/user/login'
+                    }
+                }
+            },
+            error: function () {
+                alert("网络错误，请稍后重试");
+            }
+        });
+        return false;
+    });
+
+    //var editor = initCommentEdtior('content', 150);
+
+    $('body').on('click', '.toReply', function () {
+        $('#pid').val($(this).attr('data-id'));
+        $('#comment').val('回复 @' + $(this).attr('data-author') + ' ：');
+        $('#comment').focus();
+        //editor.focus();
+        //editor.setData('回复 @' + $(this).attr('data-author') + ' ：');
+    });
+
+
+
+</script>
+#end
+
+#define content()
+<script>
+(function ($) {
+  $(function () {
+          $("body").removeClass("home blog wp-custom-logo hfeed");
+          $("body").addClass("archive category single category-auto category-7 wp-custom-logo hfeed");
+          $("#primary").show();
+  })
+})(jQuery);
+</script>
+<div id="primary" class="content-area clear" style="display:none;">
+    <div class="content-wrapper">
+      <main id="main" class="site-main clear">
+          <article id="post-176" class="post-176 post type-post status-publish format-standard has-post-thumbnail hentry category-travel category-auto category-tech category-food category-finance tag-25 tag-26 tag-27">
+              <header class="entry-header club-header">
+
+                  <div class="title-content">
+                      <h1 class="entry-title">#(post.title ??)</h1>
+                      <div class="entry-meta">
+                          <span class="entry-comment"><a href="#" class="comments-link">评论</a> 5</span>
+                          <span class="entry-views">阅读<span class="view-count"></span> #(post.view_count ?? 0)</span>
+                      </div><!-- .entry-meta -->
+                  </div>
+
+                  <div class="entry-meta club-meta">
+                      <div class="entry-author">
+                          <a href="#(post.user.url ??)"><img alt="" src="#(post.user.avatar ?? 'img/avatar.png')" class="avatar avatar-100 photo" height="100" width="100"></a>
+                      </div>
+                      <div>
+                          <p class="club-author">
+                              <b class="fn"></b>
+                              #(post.user.nickname ??)
+                              #userMembers(post.user.id)
+                              #for(member : members)
+                              <a href="#(member.type.link ??)" class="label-vip2">
+                                  <img src="#(member.type.icon ??)" alt="#(member.type.title ??)">
+                              </a>
+                              #end
+                              #end
+                          </p>
+
+                          <p class="entry-date">#date(post.created ??)</p>
+                      </div>
+                  </div>
+
+              </header><!-- .entry-header -->
+              <div class="entry-content">
+                  #(post.content ??)
+              </div><!-- .entry-content -->
+              <div class="entry-footer clear">
+                  <div class="entry-tags">
+
+                  </div><!-- .entry-tags -->
+              </div><!-- .entry-footer -->
+          #postCommentPage()
+          <div id="comments" class="comments-area">
+
+              <h2 class="comments-title">#(commentPage.totalRow)个回帖 </h2>
+              <ol class="comment-list">
+
+                  #for(comment : commentPage.list)
+                  <li class="comment byuser comment-author-ant bypostauthor even thread-even depth-1 parent">
+                      <article class="comment-body">
+
+                          <div class="club-comment-content">
+                              #(comment.content ??)
+                          </div><!-- .comment-content -->
+
+
+                          <div class="entry-meta club-meta">
+                              <div class="entry-author">
+                                  <a href="#"><img alt="" src="#(comment.user.avatar ?? 'img/avatar.png')" class="avatar avatar-100 photo" height="100" width="100"></a>
+                              </div>
+                              <div>
+                                  <p class="club-author"><b class="fn"></b>
+                                      #(comment.user.nickname ??)
+                                      #userMembers(post.user.id)
+                                      #for(member : members)
+                                      <a href="#(member.type.link ??)" class="label-vip2">
+                                          <img src="#(member.type.icon ??)" alt="#(member.type.title ??)">
+                                      </a>
+                                      #end
+                                      #end
+                                  </p>
+                                  <time class="entry-date">#date(comment.created)</time>
+                              </div>
+                              <div class="reply club-reply">
+                                  <a rel="nofollow" class="comment-reply-link toReply" rel='nofollow' href="javascript:;" onclick="" data-id="#(comment.user.id)" data-author="#(comment.user.nickname)">回复</a>
+
+                              </div>
+
+                          </div>
+
+                      </article>
+                  </li>
+                  #end
+
+
+              </ol><!-- .comment-list -->
+              <div id="jpl" class="comment-respond">
+                  <h3 id="reply-title" class="comment-reply-title">我要回复</h3>
+                  <form action="#(CPATH)/club/doPublishComment" method="POST"
+                        id="clubCommentForm"
+                        class="comment-form comment-form-comment comment_form" style="display: block;float: left;width: 100%;">
+                      <div class="single-post-comment__form cf">
+                          <input type="hidden" name="postId" value="#(post.id)">
+                          <input type="hidden" name="pid" id="pid" value="">
+                          <input type="hidden" name="csrf_token" value="#(CSRF_TOKEN)">
+                          <textarea class="form-control  js-comment-yh-form-control textarea"  rows="3" id="comment" placeholder="你怎么看？" tabindex="1" name="content"></textarea>
+                      </div>
+
+                      <div class="bottom" style="margin: 0 0 10px;padding: 0 0 10px;">
+                          #if(option('post_comment_vcode_enable'))
+                          <div class="commentform-info ">
+                              <p style="float:left;width: auto;margin: 8px 0 0 0px;"> <img src="/commons/captcha" onclick="this.src='#(CPATH)/commons/captcha?d='+Math.random();" cdn-exclude id="captchaimg" style="display: inline-block;"></p>
+                              <p style="float: left;margin: 8px;width: 130px;">
+                                  <label for="captcha">
+                                      <input class="form-control" type="text" id="captcha" tabindex="2" name="captcha" placeholder="请填写验证码" required style="HEIGHT: 40PX; border-radius: 0px;padding: 0 10px;">
+                                  </label>
+                              </p>
+                          </div>
+                          #end
+                          <div class="btn-group commentBtn form-submit" role="group" style="width: auto;display: block;margin: 10px 0 0px;float: right;">
+                              <button name="submit" type="submit" id="submit" class="btn btn-article js-comment-yh-submit transition ladda-button comment-submit-btn right" tabindex="5" style="float: left;margin-top: 0;">提交评论</button>
+                          </div>
+                      </div>
+                  </form>
+                  
+                  
+                  
+                  
+                  
+                  
+              </div><!-- #respond -->
+          </div><!-- #comments -->
+          #end
+      </article>
+      </main><!-- .site-main -->
+    </div><!-- .content-wrapper -->
+</div><!-- #primary -->
+
+
+
+
+#include("_clubbar.html")
+
+#end
+

@@ -1,0 +1,309 @@
+#define layout()
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>#(SEO_TITLE ?? (WEB_TITLE + '-' + WEB_SUBTITLE))</title>
+    <meta name="keywords" content="#(SEO_KEYWORDS)">
+    <meta name="description" content="#(SEO_DESCRIPTION)">
+    <link rel="stylesheet" id="wp-block-library-css" href="./css/style.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="zimeiti-2-style-css" href="./css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="genericons-style-css" href="./css/genericons.css" type="text/css" media="all">
+    <link rel="stylesheet" id="zimeiti-2-responsive-style-css" href="./css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="./css/ant.css" type="text/css" media="all">
+    <link rel="icon" href="images/favicon.ico">
+    #option("baidu_statistics_ant")
+
+    <!--<script type="text/javascript" src="./js/jquery.js"></script>-->
+    <!--<script type="text/javascript" src="./js/jquery-migrate.min.js"></script>-->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var simpleLikes = { "ajaxurl": "", "like": "", "unlike": "" };
+        var jpress = {cpath:"#(CPATH)"}
+        /* ]]> */
+    </script>
+
+    <!--<script type="text/javascript" src="./js/simple-likes-public.js"></script>-->
+    <script type="text/javascript" src="/static/components/jquery/jquery.min.js"></script>
+    #@css?()
+</head>
+
+<body class="home blog wp-custom-logo hfeed">
+<!-- <body class="post-template-default single single-post postid-176 single-format-standard wp-custom-logo"> -->
+
+<div id="page" class="site">
+
+
+    <div id="content" class="site-content container  clear">
+
+
+        <div class="left-col sidebar-2">
+
+            <div class="site-branding">
+
+
+                <div id="logo">
+                    <a href="#(CPATH)/" class="custom-logo-link" rel="home" itemprop="url">
+                        <img width="240" height="120" src="#option('calmlog_logo','./images/logo.png')" class="custom-logo" alt="#(option('jpressportal_logo_text') ?? 'JPress')" itemprop="logo">
+                    </a>
+                </div><!-- #logo -->
+
+
+            </div><!-- .site-branding -->
+
+
+
+            <nav id="primary-nav" class="primary-navigation phone_menu_col_4">
+                <div class="menu-primary-container">
+                    <ul id="primary-menu" class="sf-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+
+                        #for(menu : MENUS)
+                        #if(menu.hasChild())
+                        <li class="color#(for.count) menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children ">
+                            <a href="#(menu.url ??)" class="sf-with-ul"><i class="fa #(menu.icon ??)"></i> #(menu.text ??)</a>
+                            <ul class="sub-menu" style="display: none;">
+
+                                #for(m : menu.getChilds())
+                                <li id="menu-item-523" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-523 #(m.isActive ? 'active' : '')">
+                                    <a href="#(CPATH)#(m.url ??)">#(m.text ??)</a>
+                                </li>
+                                #end
+                            </ul>
+                        </li>
+                        #else
+                        <li class="color#(for.count) menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home  #(menu.isActive ? 'active' : '')">
+                            <a href="#(menu.url ??)" aria-current="page"><i class="fa #(menu.icon ??)"></i>#(menu.text ??)</a>
+                        </li>
+                        #end
+                        #end
+
+                    </ul>
+
+                    #if(!option("ant_login_enable"))
+                    #if(USER)
+                    <div class="ant-login">
+                      <div class="login-user">
+                        <div>
+                            <a href="#(CPATH)/writer/#(USER.id ??)" target="_blank">
+                          <img alt="" src="#(USER.avatar ?? '/templates/ant/images/tx.png')">
+                            </a>
+                        </div>
+                          <div class="user-data">
+                              <a class="user-nickname"><a href="#(CPATH)/writer/#(USER.id ??)" target="_blank">hi~#(USER.nickname ??)</a></p>
+                              <p class="user-date"><a href="#(CPATH)/ucenter"> 个人中心</a> | <a href="#(CPATH)/ucenter/doLogout?csrf_token=#(CSRF_TOKEN)"> 退出登录</a></p>
+
+                          </div>
+                      </div>
+
+                    </div>
+                    #else
+                    <div class="ant-login-no">
+                        <a href="#(CPATH)/user/login">登录</a> /
+                        <a href="#(CPATH)/user/register">注册</a>
+                    </div>
+                    #end
+                    #end
+
+
+
+                </div>
+            </nav><!-- #primary-nav -->
+
+
+
+            <!--<div id="slick-mobile-menu"></div>-->
+
+
+            <span class="search-icon">
+					<span class="genericon genericon-search"> <span>搜索</span></span>
+					<span class="genericon genericon-close"> <span>收起</span></span>
+				</span>
+            <div class="header-search">
+                <form id="searchform" method="get" action="#(CPATH)/article/search">
+                    <input type="search" name="keyword" class="search-input" placeholder="请输入关键词" autocomplete="off">
+                    <button type="submit" class="search-submit">搜索</button>
+                </form>
+            </div><!-- .header-search -->
+
+
+
+        </div><!-- .left-col -->
+
+
+
+
+        #@content?()
+
+
+
+    </div>
+
+    <div class="container">
+        <footer id="colophon" class="site-footer">
+
+
+            <div class="footer-columns clear">
+
+                <div class="footer-column footer-column-1 ht_grid_1_4">
+                    <div id="zimeiti_2-recent-2"
+                         class="widget footer-widget widget-zimeiti_2-recent widget_posts_thumbnail">
+                        <h3 class="widget-title">近期文章</h3>
+                        <ul>
+
+                            #articles(categoryFlag="",hasThumbnail="true",orderBy="created",count="3")
+                            #for(article : articles)
+                            <li class="clear"><a href="#(article.url)"
+                                                 rel="bookmark" target="_blank">
+                                <div class="thumbnail-wrap" style="height:56px;"><img width="120" height="85"
+                                                                                      src="#(article.showImage ?? '/templates/ant/images/no.jpg')"
+                                                                                      class="attachment-zimeiti_2_widget_post_thumb size-zimeiti_2_widget_post_thumb wp-post-image"
+                                                                                      alt=""></div>
+                            </a>
+                                <div class="entry-wrap"><a href="#(article.url)"
+                                                           rel="bookmark" target="_blank">#(article.title)</a></div>
+                            </li>
+                            #end
+                            #end
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-column-2 ht_grid_1_4">
+                    <div id="zimeiti_2-random-2"
+                         class="widget footer-widget widget-zimeiti_2-random widget_posts_thumbnail">
+                        <h3 class="widget-title">随机文章</h3>
+                        <ul>
+
+                            #articles(categoryFlag="",hasThumbnail="true",orderBy="view_count",count="3")
+                            #for(article : articles)
+
+                            <li class="clear"><a href="#(article.url)"
+                                                 rel="bookmark" target="_blank">
+                                <div class="thumbnail-wrap" style="height:56px;"><img width="120" height="85"
+                                                                                      src="#(article.showImage ?? '/templates/ant/images/no.jpg')"
+                                                                                      class="attachment-zimeiti_2_widget_post_thumb size-zimeiti_2_widget_post_thumb wp-post-image"
+                                                                                      alt=""></div>
+                            </a>
+                                <div class="entry-wrap"><a href="#(article.url)"
+                                                           rel="bookmark" target="_blank">#(article.title)</a></div>
+                            </li>
+                            #end
+                            #end
+
+
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="footer-column footer-column-3 ht_grid_1_4">
+                    <div id="tag_cloud-2" class="widget footer-widget widget_tag_cloud">
+                        <h3 class="widget-title">标签</h3>
+                        <div class="tagcloud">
+
+                            #tags(count=12)
+                            #for(tag : tags)
+                            <a href="#(tag.url)" class="tag-cloud-link tag-link-14 tag-link-position-1" style="font-size: 8pt;" aria-label="#(tag.url)">#(tag.title)</a>
+                            #end
+                            #end
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-column footer-column-4 ht_grid_1_4">
+                    <div id="text-2" class="widget footer-widget widget_text">
+                        <h3 class="widget-title">关于我们</h3>
+                        <div class="textwidget">
+                            <p>#option('gywm','')</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- .footer-columns -->
+
+
+            <div class="clear"></div>
+
+            <div id="site-bottom" class="clear">
+
+                <div class="container">
+
+                    <div class="menu-footer-container">
+                        <ul id="footer-menu" class="footer-nav">
+
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj1_link','')">#option('yqlj1','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj2_link','')">#option('yqlj2','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj3_link','')">#option('yqlj3','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj4_link','')">#option('yqlj4','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj5_link','')">#option('yqlj5','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj6_link','')">#option('yqlj6','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj7_link','')">#option('yqlj7','')</a></li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="#option('yqlj8_link','')">#option('yqlj8','')</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="site-info">
+
+
+                        © 2019 <a href="http://www.jpress.io">jpress.io</a>
+                    </div><!-- .site-info -->
+
+                </div><!-- .container -->
+
+            </div>
+            <!-- #site-bottom -->
+
+        </footer><!-- #colophon -->
+    </div><!-- .container -->
+</div><!-- #page -->
+
+
+<script type="text/javascript" src="./js/superfish.js"></script>
+<script type="text/javascript" src="./js/jquery.slicknav.js"></script>
+<script type="text/javascript" src="./js/modernizr.js"></script>
+<script type="text/javascript" src="./js/html5.js"></script>
+<script type="text/javascript" src="./js/jquery.bxslider.js"></script>
+<!--<script type="text/javascript" src="./js/jquery.custom.js"></script>-->
+<script type="text/javascript" src="./js/wp-embed.min.js"></script>
+
+
+<div id="back-top" style="display: none;">
+    <a href="#top" title="返回顶部"><span
+            class="genericon genericon-collapse"></span></a>
+</div>
+
+
+
+<script>
+    (function ($) { //create closure so we can safely use $ as alias for jQuery
+
+        $(document).ready(function () {
+
+            "use strict";
+
+            /*-----------------------------------------------------------------------------------*/
+            /*  Slick Mobile Menu
+            /*-----------------------------------------------------------------------------------*/
+            $('#primary-menu').slicknav({
+                prependTo: '#slick-mobile-menu',
+                allowParentLinks: true,
+                label: '导航'
+            });
+
+        });
+
+    })(jQuery);
+
+</script>
+
+#@script?()
+
+</body>
+
+</html>
+#end

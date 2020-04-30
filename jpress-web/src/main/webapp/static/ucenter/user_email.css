@@ -1,0 +1,274 @@
+body{
+
+}
+#wrapper {
+    width: 1020px;
+    min-height: 892px;
+    margin-left: 230px;
+    background: #eee !important;
+}
+#content {
+    min-height: 420px;
+    width: 980px;
+    margin: 0 20px;
+    background: #fff;
+}
+#content h1 {
+    font-size: 26px;
+    margin-left: 15px;
+}
+.clearfix {
+    display: block;
+}
+#wrapper .grid_l .article {
+    width: 740px;
+}
+
+.grid_l .article {
+    float: left;
+    width: 590px;
+    padding-right: 40px;
+}
+.doumail-toolbar {
+    margin-bottom: 15px;
+        margin-left: 15px;
+}
+.doumail-toolbar .inbox-filter {
+    float: right;
+    position: relative;
+    z-index: 1;
+    color: #666;
+}
+.doumail-toolbar .inbox-filter a.label, .doumail-toolbar .inbox-filter a.label:link, .doumail-toolbar .inbox-filter a.label:visited {
+    color: #666;
+}
+
+.doumail-toolbar .inbox-filter .label {
+    margin-left: 4px;
+    line-height: 2.4;
+}
+.doumail-toolbar .inbox-filter span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+    vertical-align: middle;
+}
+.doumail-toolbar .inbox-filter i {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+    vertical-align: middle;
+    position: relative;
+    left: 2px;
+    border-width: 3px 3px 0;
+    border-color: #666 transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.doumail-toolbar .inbox-filter .on i {
+    border-width: 0 3px 3px;
+    border-color: transparent transparent #666 transparent;
+    border-style: dashed dashed solid dashed;
+}
+.doumail-toolbar .inbox-filter-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-right: -5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 0;
+}
+.doumail-toolbar .inbox-filter-list a {
+    display: block;
+    *display: inline-block;
+    padding: 4px 10px;
+    white-space: nowrap;
+}
+.doumail-toolbar .inbox-filter-list li:hover, .doumail-toolbar .inbox-filter-list a:hover{
+    background-color: #3377AA;
+    color: #FFFFFF;
+}
+.tabs {
+    font-size: 0;
+    letter-spacing: -0.31em;
+    *letter-spacing: normal;
+    word-spacing: -0.43em;
+}
+.tabs a.on:link, .tabs a.on:visited, .tabs a.on:hover, .tabs a.on:active {
+    color: #fff;
+    background: #83bf73;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.tabs a:link, .tabs a:visited, .tabs a:hover, .tabs a:active {
+    font-size: 13px;
+    line-height: 1.2;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+.tabs a {
+    padding: 4px 10px;
+}
+.tabs a {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    padding: 1px 8px;
+    margin-right: 5px;
+}
+.doumail-list {
+    border-top: 1px solid #eee;
+}
+.doumail-list li {
+    position: relative;
+    overflow: hidden;
+    zoom: 1;
+    padding: 15px 15px 14px;
+    border-bottom: 1px solid #eee;
+}
+.doumail-list .pic {
+    float: left;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+.doumail-list .title {
+    overflow: hidden;
+    zoom: 1;
+    word-wrap: break-word;
+    line-height: 1.5;
+    /*cursor: pointer;*/
+}
+.doumail-list .select {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    padding-top: 30px;
+}
+.operations {
+    display: none;
+    position: absolute;
+    top: 32px;
+    right: 30px;
+    line-height: 1.5;
+}
+.doumail-list .pic img {
+    width: 32px;
+    height: 32px;
+}
+.doumail-list .title .sender {
+    margin: -2px 0 2px;
+    color: #666;
+}
+.doumail-list li .title p {
+    min-height: 14px;
+}
+.doumail-list .title p {
+    margin: 0;
+    width: 80%;
+    line-height: 1.4;
+}
+.doumail-list .title .sender .time {
+    float: right;
+    color: #999;
+}
+.doumail-list .title .sender {
+    margin: -2px 0 2px;
+    color: #666;
+    cursor: pointer;
+}
+
+.doumail-list .title {
+    overflow: hidden;
+    zoom: 1;
+    word-wrap: break-word;
+    line-height: 1.5;
+    /*cursor: pointer;*/
+}
+.doumail-list li .title p {
+    min-height: 14px;
+}
+
+.doumail-list .title p {
+    margin: 0;
+    width: 80%;
+    line-height: 1.4;
+}
+.doumail-list-ft {
+    padding: 12px 10px 0;
+    margin-bottom: 10px;
+    text-align: right;
+}
+.doumail-list-ft .button-group {
+    margin-right: 10px;
+}
+
+.doumail-list-ft {
+    padding: 12px 10px 0;
+    margin-bottom: 10px;
+    text-align: right;
+}
+#content{
+    font-size: 13px;
+}
+.doumail-list-ft input {
+    padding-top: 2px;
+    line-height: 1.2;
+}
+a:visited {
+    color: #666699;
+    text-decoration: none;
+}
+a:link {
+    color: #37a;
+    text-decoration: none;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.doumail-toolbar .inbox-filter-list a {
+    display: block;
+    *display: inline-block;
+    padding: 4px 10px;
+    white-space: nowrap;
+}
+
+a:visited {
+    color: #666699;
+    text-decoration: none;
+}
+a:link {
+    color: #37a;
+    text-decoration: none;
+}
+a:visited {
+    color: #669;
+    text-decoration: none;
+}
+a:link {
+    color: #37a;
+    text-decoration: none;
+}
+.on+div{
+	display: block !important;
+}
+.unreadmsg{
+	background-color: #ffe2e7 !important;
+}
+.atv{
+	background-color: #3377AA !important;
+	
+}
+.atv a{
+	color: #fff !important;
+}

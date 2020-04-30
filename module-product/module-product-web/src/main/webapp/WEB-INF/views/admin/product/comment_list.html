@@ -1,0 +1,161 @@
+#@layout()
+
+#define script()
+<script>
+
+    function doChangeStatus(id, status) {
+        ajaxGet("#(CPATH)/admin/product/comment/doCommentStatusChange?id=" + id + "&status=" + status)
+    }
+
+    function doDel(id) {
+        if (confirm("确定要删除这条评论吗？删除后不可恢复")) {
+            ajaxGet("#(CPATH)/admin/product/comment/doDel/" + id);
+        }
+    }
+
+    $("#batchDel").click(function () {
+        var ids = getSelectedIds();
+        if (ids == "") {
+            alert('您未选择任何条目');
+            return
+        }
+        if (confirm("确定要删除选中的评论吗？删除后不可恢复")) {
+            ajaxGet("#(CPATH)/admin/product/comment/doDelByIds?ids=" + ids);
+        }
+    })
+
+
+</script>
+#end
+
+#define content()
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            产品评论
+            <small>Product Comment</small>
+        </h1>
+    </section>
+
+    <section class="content-header text-tap">
+        <a href="#(CPATH)/admin/product/comment">全部 (#(totalCount ?? 0))</a> |
+        <a href="?status=1">已发布 (#(normalCount ?? 0))</a> |
+        <a href="?status=2">待审核 (#(unauditedCount ?? 0))</a> |
+        <a href="?status=9" style="color: #a00">垃圾箱 (#(trashCount ?? 0))</a>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <form class="form-horizontal actionPanel" action="#(CPATH)/admin/product/comment" method="get">
+                            <input type="hidden" name="status" value="#para('status')">
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label class="col-sm-3 control-label">关键字</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="keyword" value="#para('keyword')">
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-8">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary ">搜索</button>
+                                        <button type="reset" class="btn btn-default">重置</button>
+                                        <a class="btn"> 更多<i class="fa fa-fw fa-angle-down"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </form>
+
+                        <div class="row actionPanel">
+                            <div class="col-xs-12">
+                                <button type="button" id="batchAudit" class="btn btn-primary checkAction"> 批量审核</button>
+                                <button type="button" id="batchDel" class="btn btn-default checkAction"> 批量删除</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body ">
+
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th style="width: 10px">
+                                    <input name="dataItem" onchange="checkAll(this)" type="checkbox"/>
+                                </th>
+                                <th style="width: 100px">作者</th>
+                                <th style="width: 40%">内容</th>
+                                <th>评论的产品</th>
+
+                                <th style="width: 100px">状态</th>
+                                <th>时间</th>
+                            </tr>
+                            #for(comment : page.list)
+                            <tr class="jp-actiontr">
+                                <td><input class="dataItem" type="checkbox" value="#(comment.id)"/>
+                                </td>
+                                <td>
+                                    <a href="#(CPATH)/admin/user/detail/#(comment.user.id)">
+                                        #(comment.user.nickname ??)
+                                    </a>
+
+                                <td>
+                                    #(comment.content ??)
+                                    <strong>
+                                        #if(comment.isUnaudited()) (待审核) #end
+                                    </strong>
+                                    <div class="jp-actionblock">
+                                        <div class="jp-actionitem">
+                                            <a href="#(CPATH)/admin/product/comment/edit/#(comment.id)">编辑</a> |
+                                            <a href="#(CPATH)/admin/product/comment/reply/#(comment.id)">回复</a> |
+                                            #if(comment.isNormal())
+                                            <a href="javascript:;"
+                                               onclick="doChangeStatus('#(comment.id)','2')">待审核</a> |
+                                            #else
+                                            <a href="javascript:;"
+                                               onclick="doChangeStatus('#(comment.id)','1')">审核</a> |
+                                            #end
+                                            <a href="javascript:;" onclick="doChangeStatus('#(comment.id)','9')"
+                                               class="red-action">垃圾箱</a> |
+                                            <a href="javascript:;" onclick="doDel('#(comment.id)')"
+                                               class="red-action">永久删除</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#(comment.product.url ??)" target="_blank">
+                                        #(comment.product.title ??)
+                                    </a>
+                                </td>
+                                </td>
+                                <td>#(comment.statusStr ??)</td>
+                                <td>#date(comment.created)</td>
+                            </tr>
+                            #end
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                #@_paginate()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+</div>
+#end

@@ -1,0 +1,494 @@
+#@layout()
+#define css()
+<style>
+    .btn-image-browser{
+        margin-top:0.5rem;
+        margin-bottom:0.5rem;
+    }
+    .form-group .thumb-img{
+        width: 200px;
+    }
+    .setting-tips{
+        color:#999;
+        font-size:1.4rem;
+        margin-top:0.5rem;
+    }
+    .form-group .download-img{
+        height: 200px;
+    }
+    .form-group .download-btn{
+        height: 40px;
+    }
+    .tab-content{
+        padding:3rem 0;
+    }
+
+</style>
+
+#end
+#define content()
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            模板设置
+            <small>Template Setting</small>
+        </h1>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header ">
+                        <h3 class="box-title"></h3>
+                    </div>
+
+                    <form class="form-horizontal form-setting" autocomplete="off"
+                          id="optionForm">
+                        <div class="box-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">首页设置</a></li>
+                                <li><a href="#tab_2" data-toggle="tab">友情链接</a></li>
+                                <li><a href="#tab_3" data-toggle="tab">广告与百度统计</a></li>
+                                <li><a href="#tab_4" data-toggle="tab">关于设置</a></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <div class="setting-panl">
+                                        <h4 class="page-header">logo设置</h4>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">logo图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="calmlog_logo"
+                                                        for-input="calmlog_logo_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('calmlog_logo','images/logo.png')"
+                                                     id="calmlog_logo">
+                                                <input type="hidden" id="calmlog_logo_input" name="calmlog_logo"
+                                                       value="#option('calmlog_logo')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Logo文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="Logo文字的内容..."
+                                                       name="jpressportal_logo_text" value="#option('jpressportal_logo_text')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="setting-panl">
+                                        <h4 class="page-header">登录位置选择</h4>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">是否在右侧显示</label>
+                                            <div class="col-sm-6">
+                                                <input type="checkbox" class="switchery" data-for="ant_login_enable" #checkedIf(option("ant_login_enable"))>
+                                                <input type="hidden" id="ant_login_enable" name="ant_login_enable">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="setting-panl">
+                                        <h4 class="page-header">轮播图设置</h4>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">是否显示轮播图</label>
+                                            <div class="col-sm-6">
+                                                <input type="checkbox" class="switchery" data-for="ant_slide_enable" #checkedIf(option("ant_slide_enable"))>
+                                                <input type="hidden" id="ant_slide_enable" name="ant_slide_enable">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner1图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="banner1"
+                                                        for-input="banner1_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('banner1','images/no.jpg')"
+                                                     id="banner1">
+                                                <input type="hidden" id="banner1_input" name="banner1"
+                                                       value="#option('banner1')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner1链接</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="填写网址链接，格式：http://www.jpress.io"
+                                                       name="banner1_link" value="#option('banner1_link')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner1文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="banner1文字"
+                                                       name="banner1_text" value="#option('banner1_text')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner2图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="banner2"
+                                                        for-input="banner2_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('banner2','images/no.jpg')"
+                                                     id="banner2">
+                                                <input type="hidden" id="banner2_input" name="banner2"
+                                                       value="#option('banner2')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner2链接</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="填写网址链接，格式：http://www.jpress.io"
+                                                       name="banner2_link" value="#option('banner2_link')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner2文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="banner2文字"
+                                                       name="banner2_text" value="#option('banner2_text')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner3图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="banner3"
+                                                        for-input="banner3_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('banner3','images/no.jpg')"
+                                                     id="banner3">
+                                                <input type="hidden" id="banner3_input" name="banner3"
+                                                       value="#option('banner3')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner3链接</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="填写网址链接，格式：http://www.jpress.io"
+                                                       name="banner3_link" value="#option('banner3_link')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner3文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="banner3文字"
+                                                       name="banner3_text" value="#option('banner3_text')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner4图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="banner4"
+                                                        for-input="banner4_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('banner4','images/no.jpg')"
+                                                     id="banner4">
+                                                <input type="hidden" id="banner4_input" name="banner4"
+                                                       value="#option('banner4')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner4链接</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="填写网址链接，格式：http://www.jpress.io"
+                                                       name="banner4_link" value="#option('banner4_link')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner4文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="banner4文字"
+                                                       name="banner4_text" value="#option('banner4_text')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner5图片</label>
+                                            <div class="col-sm-6">
+                                                <button type="button"
+                                                        for-src="banner5"
+                                                        for-input="banner5_input"
+                                                        class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                    <i class="fa fa-fw fa-image"></i> 选择图片
+                                                </button>
+                                                <br/>
+                                                <img src="#(CPATH)#option('banner5','images/no.jpg')"
+                                                     id="banner5">
+                                                <input type="hidden" id="banner5_input" name="banner5"
+                                                       value="#option('banner5')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner5链接</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="填写网址链接，格式：http://www.jpress.io"
+                                                       name="banner5_link" value="#option('banner5_link')">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">banner5文字</label>
+                                            <div class="col-sm-6">
+                                                <input type="input" class="form-control" placeholder="banner5文字"
+                                                       name="banner5_text" value="#option('banner5_text')">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="tab-pane active" id="tab_2">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接1链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接1链接"
+                                                   name="yqlj1_link" value="#option('yqlj1_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接1文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接1文字"
+                                                   name="yqlj1" value="#option('yqlj1')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接2链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接2链接"
+                                                   name="yqlj2_link" value="#option('yqlj2_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接2文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接2文字"
+                                                   name="yqlj2" value="#option('yqlj2')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接3链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接3链接"
+                                                   name="yqlj3_link" value="#option('yqlj3_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接3文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接3文字"
+                                                   name="yqlj3" value="#option('yqlj3')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接4链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接4链接"
+                                                   name="yqlj4_link" value="#option('yqlj4_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接4文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接4文字"
+                                                   name="yqlj4" value="#option('yqlj4')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接5链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接5链接"
+                                                   name="yqlj5_link" value="#option('yqlj5_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接5文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接5文字"
+                                                   name="yqlj5" value="#option('yqlj5')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接6链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接6链接"
+                                                   name="yqlj6_link" value="#option('yqlj6_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接6文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接6文字"
+                                                   name="yqlj6" value="#option('yqlj6')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接7链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接7链接"
+                                                   name="yqlj7_link" value="#option('yqlj7_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接7文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接7文字"
+                                                   name="yqlj7" value="#option('yqlj7')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接8链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接8链接"
+                                                   name="yqlj8_link" value="#option('yqlj8_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">友情链接8文字</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="友情链接8文字"
+                                                   name="yqlj8" value="#option('yqlj8')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="tab_3">
+                                    <div class="setting-panl">
+                                        <h4 class="page-header">广告设置</h4>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否显示广告</label>
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" class="switchery" data-for="ads_enable" #checkedIf(option("ads_enable"))>
+                                            <input type="hidden" id="ads_enable" name="ads_enable">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告1图片</label>
+                                        <div class="col-sm-6">
+                                            <button type="button"
+                                                    for-src="gg1"
+                                                    for-input="gg1_input"
+                                                    class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                <i class="fa fa-fw fa-image"></i> 选择图片
+                                            </button>
+                                            <br/>
+                                            <img src="#(CPATH)#option('gg1','images/no.jpg')"
+                                                 id="gg1">
+                                            <input type="hidden" id="gg1_input" name="gg1"
+                                                   value="#option('gg1')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告1链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="广告1链接"
+                                                   name="gg1_link" value="#option('gg1_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告2图片</label>
+                                        <div class="col-sm-6">
+                                            <button type="button"
+                                                    for-src="gg2"
+                                                    for-input="gg2_input"
+                                                    class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                <i class="fa fa-fw fa-image"></i> 选择图片
+                                            </button>
+                                            <br/>
+                                            <img src="#(CPATH)#option('gg2','images/no.jpg')"
+                                                 id="gg2">
+                                            <input type="hidden" id="gg2_input" name="gg2"
+                                                   value="#option('gg2')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告2链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="广告2链接"
+                                                   name="gg2_link" value="#option('gg2_link')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告3图片</label>
+                                        <div class="col-sm-6">
+                                            <button type="button"
+                                                    for-src="gg3"
+                                                    for-input="gg3_input"
+                                                    class="btn-image-browser btn btn-flat btn-default btn-xs">
+                                                <i class="fa fa-fw fa-image"></i> 选择图片
+                                            </button>
+                                            <br/>
+                                            <img src="#(CPATH)#option('gg3','images/no.jpg')"
+                                                 id="gg3">
+                                            <input type="hidden" id="gg3_input" name="gg3"
+                                                   value="#option('gg3')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">广告3链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="广告3链接"
+                                                   name="gg3_link" value="#option('gg3_link')">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="setting-panl">
+                                        <h4 class="page-header">百度统计</h4>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">百度统计代码</label>
+                                            <div class="col-sm-6">
+                                                <textarea rows="6" class="form-control" placeholder="百度统计代码" name="baidu_statistics_ant">#option("baidu_statistics_ant")</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="tab_4">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">关于我们</label>
+                                        <div class="col-sm-6">
+                                            <input type="input" class="form-control" placeholder="关于我们"
+                                                   name="gywm" value="#option('gywm')">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="box-footer">
+                            <div class="col-sm-offset-2 col-sm-10 submit-block">
+                                <div class="box-submit">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+#end

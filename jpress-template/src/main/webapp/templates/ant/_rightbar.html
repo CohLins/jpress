@@ -1,0 +1,140 @@
+
+<script src="/static/components/jquery/jquery.form.min.js"></script>
+
+<aside id="secondary" class="widget-area sidebar">
+
+    #if(option("ant_login_enable"))
+    #if(USER)
+    <div class="ant-login" style="background-color: #fff;margin-bottom:20px;border:none;">
+        <div class="login-user">
+            <div>
+                <img alt="" src="#(USER.avatar ?? '/templates/ant/images/tx.png')">
+            </div>
+            <div class="user-data">
+                <p class="user-nickname">hi~#(USER.nickname ??)</p>
+                <p class="user-date"><a href="#(CPATH)/ucenter"> 个人中心</a> | <a href="#(CPATH)/ucenter/doLogout?csrf_token=#(CSRF_TOKEN)"> 退出登录</a></p>
+
+            </div>
+        </div>
+
+    </div>
+    #else
+    <div class="ant-login-no" style="background-color: #fff;margin-bottom:20px;border:none;">
+        <a href="#(CPATH)/user/login">登录</a> /
+        <a href="#(CPATH)/user/register">注册</a>
+    </div>
+    #end
+    #end
+
+    <div id="search-2" class="widget widget_search" style="height: 80px;">
+        <form id="searchform" method="get" action="#(CPATH)/article/search">
+            <input type="search" name="keyword" class="search-input" placeholder="请输入关键词" autocomplete="off">
+            <button type="submit" class="search-submit">搜索</button>
+            <select style="margin-top: 10px; " name="value">
+                <option>请选择搜索类别</option>
+                #for(menu : MENUS)
+                <option>#(menu.text ??)</option>
+                #end
+            </select>
+        </form>
+    </div>
+    <div id="zimeiti_2-views-2" class="widget widget-zimeiti_2-views widget_posts_thumbnail">
+        <h2 class="widget-title"><span>浏览最多的文章<span></span></span></h2>
+        <ul>
+
+
+            #articles(categoryFlag="",hasThumbnail="true",orderBy="view_count",count="5")
+            #for(article : articles)
+            <li class="clear"><a href="#(article.url)" rel="bookmark" target="_blank">
+                <div class="thumbnail-wrap" style="height:63px;"><img width="120" height="85"
+                                                                      src="#(article.showImage ?? 'images/no.jpg')"
+                                                                      class="attachment-zimeiti_2_widget_post_thumb size-zimeiti_2_widget_post_thumb wp-post-image"
+                                                                      alt=""></div>
+            </a>
+                <div class="entry-wrap"><a href="#(article.url)"
+                                           rel="bookmark" target="_blank">#(article.title)</a>
+                    <div class="entry-meta">#date(article.created,'yyyy-MM-dd')</div>
+                </div>
+            </li>
+            #end
+            #end
+
+        </ul>
+    </div>
+    #if(option("ads_enable"))
+    <div id="happythemes-ad-3" class="widget widget_ad ad-widget">
+        <div class="adwidget">
+            <a href="#option('gg1_link','')" target="_blank"><img
+                    src="#option('gg1','images/no.jpg')"></a>
+        </div>
+        <h2 class="widget-title" style="display: block;"><span>广告<span></span></span></h2>
+    </div>
+    #end
+
+    <div id="zimeiti_2-popular-2" class="widget widget-zimeiti_2-popular widget_posts_thumbnail">
+        <h2 class="widget-title"><span>评论最多的文章<span></span></span></h2>
+        <ul>
+
+            #articles(categoryFlag="",hasThumbnail="true",orderBy="comment_count",count="5")
+            #for(article : articles)
+            <li class="clear"><a href="#(article.url)" rel="bookmark" target="_blank">
+                <div class="thumbnail-wrap" style="height:63px;"><img width="120" height="85"
+                                                                      src="#(article.showImage ?? 'images/no.jpg')"
+                                                                      class="attachment-zimeiti_2_widget_post_thumb size-zimeiti_2_widget_post_thumb wp-post-image"
+                                                                      alt=""></div>
+            </a>
+                <div class="entry-wrap"><a href="#(article.url)"
+                                           rel="bookmark" target="_blank">#(article.title)</a>
+                    <div class="entry-meta">#date(article.created,'yyyy-MM-dd')</div>
+                </div>
+            </li>
+            #end
+            #end
+
+
+        </ul>
+    </div>
+    #if(option("ads_enable"))
+    <div id="happythemes-ad-2" class="widget widget_ad ad-widget">
+        <div class="adwidget">
+            <a href="#option('gg2_link','')" target="_blank"><img
+                    src="#option('gg2','images/no.jpg')"></a>
+        </div>
+        <h2 class="widget-title" style="display: block;"><span>广告<span></span></span></h2>
+    </div>
+    #end
+
+    <div id="zimeiti_2-recent-3" class="widget widget-zimeiti_2-recent widget_posts_thumbnail">
+        <h2 class="widget-title"><span>最新文章<span></span></span></h2>
+        <ul>
+
+
+            #articles(categoryFlag="",hasThumbnail="true",orderBy="created",count="5")
+            #for(article : articles)
+            <li class="clear"><a href="#(article.url)" rel="bookmark" target="_blank">
+                <div class="thumbnail-wrap" style="height:63px;"><img width="120" height="85"
+                                                                      src="#(article.showImage ?? 'images/no.jpg')"
+                                                                      class="attachment-zimeiti_2_widget_post_thumb size-zimeiti_2_widget_post_thumb wp-post-image"
+                                                                      alt=""></div>
+            </a>
+                <div class="entry-wrap"><a href="#(article.url)"
+                                           rel="bookmark" target="_blank">#(article.title)</a>
+                    <div class="entry-meta">#date(article.created,'yyyy-MM-dd')</div>
+                </div>
+            </li>
+            #end
+            #end
+
+
+        </ul>
+    </div>
+    #if(option("ads_enable"))
+    <div id="happythemes-ad-4" class="widget widget_ad ad-widget">
+        <div class="adwidget">
+            <a href="#option('gg3_link','')" target="_blank"><img
+                    src="#option('gg3','images/no.jpg')"></a>
+        </div>
+        <h2 class="widget-title" style="display: block;"><span>广告<span></span></span></h2>
+    </div>
+    #end
+</aside>

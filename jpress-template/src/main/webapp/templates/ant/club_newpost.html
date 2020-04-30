@@ -1,0 +1,116 @@
+#include("_layout.html")
+#@layout()
+
+#define script()
+<script src="#(CPATH)/static/components/jquery/jquery.min.js"></script>
+<script src="#(CPATH)/static/components/jquery/jquery.form.min.js"></script>
+<script src="#(CPATH)/static/components/ckeditor/ckeditor.js"></script>
+<script src="js/main.js"></script>
+<script>
+
+    function ok(result){
+        location.href = result.url;
+    }
+
+    initEditor('editor1', 467);
+
+</script>
+#end
+
+#define content()
+<script>
+(function ($) {
+  $(function () {
+          $("body").removeClass("home blog wp-custom-logo hfeed");
+          $("body").addClass("archive category category-auto category-7 wp-custom-logo hfeed");
+          $("#primary").show();
+  })
+})(jQuery);
+</script>
+
+
+
+<div id="primary" class="content-area clear" style="display:none;">
+
+    <div class="content-wrapper">
+
+
+      <main id="main" class="site-main clear">
+
+          <div class="newpost">
+              <h5>发帖</h5>
+
+              <form action="#(CPATH)/club/doPublishPost" method="post" data-ok-function="ok" class="comment-form comment-form-comment comment_form autoAjaxSubmit" style="
+            display: block;
+            float: left;
+            width: 100%;
+        ">
+                  <div class="from-header">
+                      <div class="form-group from-left">
+                          <select class="form-control" name="categoryid">
+                              #for(c : clubCategories)
+                              <option value="#(c.id)">#(c.title ??)</option>
+                              #end
+                          </select>
+                      </div>
+
+
+                      <div class="form-group from-right">
+                        <input class="form-control" type="text" placeholder="标题：一句话描述问题，尽量涵盖问题重点。" name="title">
+                      </div>
+                  </div>
+                  <div class="single-post-comment__form cf">
+
+                      <input type="hidden" name="" value="">
+                      <input type="hidden" name="" >
+                      <textarea id="editor1" class="form-control  js-comment-yh-form-control textarea"  rows="30" placeholder="我要发帖" tabindex="1" name="content"></textarea>
+
+                  </div>
+                  <div class="bottom" style="
+margin: 0 0 10px;
+padding: 0 0 10px;
+width: 100%;
+overflow: hidden;
+">
+
+                  <div class="commentform-info ">
+                      <p style="float:left;width: auto;margin: 8px 0 0 0px;">
+                          <img src="#(CPATH)/commons/captcha" onclick="this.src='#(CPATH)/commons/captcha?d='+Math.random();" cdn-excludestyle="display: inline-block;">
+                      </p>
+                      <p style="float: left;margin: 8px;width: 130px;">
+                          <label for="captcha">
+                          <input class="form-control" type="text" id="captcha" tabindex="2" name="captcha"
+                                 placeholder="输入验证码" required style="
+                        HEIGHT: 40PX;    border-radius: 0px;padding: 0 10px;
+                    ">
+                          </label>
+                      </p>
+                  </div>
+
+                  <div class="btn-group commentBtn form-submit" role="group" style="
+
+                width: auto;
+                display: block;
+                margin: 10px 0 0px;
+float: right;
+            ">
+                      <button name="submit" type="submit" id="submit" class="btn btn-article js-comment-yh-submit transition ladda-button comment-submit-btn right" tabindex="5" style="float: left;margin-top: 0;">发帖</button>
+                  </div>
+
+                  </div>
+
+              </form>
+          </div>
+
+      </main><!-- .site-main -->
+
+    </div><!-- .content-wrapper -->
+
+  </div><!-- #primary -->
+
+
+
+
+#include("_clubbar.html")
+
+#end

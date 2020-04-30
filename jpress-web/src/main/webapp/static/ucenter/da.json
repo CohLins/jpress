@@ -1,0 +1,97 @@
+{
+    "status": 200,
+    "msg": "OK",
+    "total": 10,
+    "data": [       
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        },
+        {
+            "id": 2,
+            "name": "456",
+            "number": 456,
+            "price": 465.00,
+            "suplierName": "456",
+            "status": "456",
+            "createTime": "2020-03-22T02:45:23.000+0000"
+        }
+    ]
+}

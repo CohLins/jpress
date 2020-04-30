@@ -1,0 +1,32 @@
+#@ucenter_layout()
+
+#define script()
+<script>
+
+</script>
+#end
+#define css()
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/user_index.css" />
+#end
+#define content()
+<div class="Common_jump">
+    <div class="Common_jump_out">
+    <div class="Common_jump_con">
+        <div>
+            <a href="#(CPATH)/ucenter/follow?action=fans">
+            <span>#(fansNum ??)</span>
+            <span>粉丝数</span></a>
+        </div>
+        <div>
+            <span>#(readNum ??)</span>
+            <span>累计阅读量</span>
+        </div>
+        <div>
+            <span>0</span>
+            <span>累计收益</span>
+        </div>
+    </div>
+    </div>
+    <div class="cutting"></div>
+</div>
+#end

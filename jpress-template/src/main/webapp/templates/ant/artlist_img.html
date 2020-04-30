@@ -1,0 +1,76 @@
+#include("_layout.html")
+#@layout()
+
+#define content()
+<script>
+(function ($) {
+  $(function () {
+          $("body").removeClass("home blog wp-custom-logo hfeed");
+          $("body").addClass("archive category category-news category-5 wp-custom-logo hfeed");
+          $("#primary").show();
+  })
+})(jQuery);
+</script>
+
+
+<div id="primary" class="content-area clear" style="display:none;">
+    #articlePage(flag="",hasThumbnail="true",orderBy="created",count=12)
+    <div class="content-wrapper">
+
+      <main id="main" class="site-main clear">
+
+        <div class="breadcrumbs clear">
+          <h1>
+            <span class="title">#(category.title ??)</span>
+          </h1>
+        </div><!-- .breadcrumbs -->
+
+
+        <div id="recent-content" class="content-grid clear">
+
+
+            #for(article : articlePage.list)
+            <div 
+            class="ht_grid_1_3 post type-post status-publish format-standard has-post-thumbnail hentry category-sports category-house category-edu category-news category-travel category-auto category-tech category-food category-finance tag-25 tag-26 tag-27">
+
+            <a class="thumbnail-link" href="#(article.title)"
+              target="_blank">
+
+
+              <div class="thumbnail-wrap">
+                <img width="280" height="180" src="#(article.showImage ?? '/templates/ant/images/no.jpg')"
+                  class="attachment-zimeiti_2_list_thumb size-zimeiti_2_list_thumb wp-post-image"
+                  alt=""> </div><!-- .thumbnail-wrap -->
+
+
+              <div class="entry-header">
+
+                <h2 class="entry-title">#(article.title)</h2>
+
+              </div><!-- .entry-header -->
+
+            </a>
+          </div>
+            #end
+
+
+
+        </div><!-- #recent-content -->
+
+      </main><!-- .site-main -->
+
+      #articlePaginate(previousText="上一页",nextText="下一页",previousClass="prev page-numbers",nextClass="next page-numbers",activeClass="current")
+      <nav class="navigation pagination" role="navigation"><div class="nav-links">
+        
+          #for(page : pages)
+          <a class="page-numbers #(page.style ??)" href="#(page.url ??)">#(page.text ??)</a>
+          #end
+      </div></nav>
+      #end
+
+    </div><!-- .content-wrapper -->
+    #end
+</div><!-- #primary -->
+#include("_rightbar.html")
+
+#end

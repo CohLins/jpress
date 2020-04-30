@@ -1,0 +1,58 @@
+#include("./layout.html")
+#@layout()
+
+#define script()
+<script src="/static/components/jquery/jquery.form.min.js"></script>
+<script src="/static/commons/article.js"></script>
+#end
+
+#define css()
+<link href="/static/commons/article.css" rel="stylesheet">
+#end
+
+#define content()
+<div class="col-md-9 cl-left">
+    <div class="cl-artical-content">
+        <h2 class="cl-artical-title">#(article.title)</h2>
+        <div class="cl-card-tag">
+            <div><span>#(article.view_count ?? 0)</span>人浏览 / <span>#(article.comment_count ?? 0)</span>人评论</div>
+        </div>
+        <div class="cl-artical">
+            #(article.content)
+        </div>
+    </div>
+
+
+    #relevantArticles(article)
+    <div class="recommend-panel">
+        <h4 class="right-card-title">相关文章</h4>
+        <div class="card-deck">
+
+            #for(article :relevantArticles )
+            <div class="card ll-panel">
+                <a class="recommend-panel-link" href="#(article.url ??)">
+                    <div class="recommend-panel-top">
+                        <img src="#(article.showImage ?? 'temporary-img/list-image1.jpg')" class="img-fluid"
+                             alt="#(article.title ??)">
+                    </div>
+                    <div class="recommend-panel-bottom">
+                        #(article.title ??)
+                    </div>
+                </a>
+            </div>
+            #end
+
+        </div>
+    </div>
+    #end
+
+
+    #@defaultArticleCommentPage()
+
+</div>
+
+<div class="col-md-3 cl-right">
+    #include("_rightbar.html")
+
+</div>
+#end

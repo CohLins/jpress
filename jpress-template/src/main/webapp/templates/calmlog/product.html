@@ -1,0 +1,77 @@
+#include("./layout.html")
+#@layout()
+
+#define script()
+<script src="/static/components/jquery/jquery.form.min.js"></script>
+<script src="/static/components/swiper/swiper.min.js"></script>
+<script src="/static/components/clipboard/clipboard.min.js"></script>
+<script src="/static/commons/product.js"></script>
+#end
+
+#define css()
+<link href="/static/components/swiper/swiper.min.css" rel="stylesheet">
+<link href="/static/commons/product.css" rel="stylesheet">
+#end
+
+#define content()
+
+<!---->
+<div class="product-top">
+
+    #@defaultProductHeader()
+
+</div>
+
+<!---->
+<div class="col-md-9 cl-left">
+    <div class="cl-artical-content">
+
+        <div class="cl-artical">
+            #(product.content)
+        </div>
+    </div>
+
+
+    #@defaultProductCommentPage()
+
+</div>
+
+<div class="col-md-3 cl-right">
+    <div class="right-card">
+
+        <div class="right-card-main">
+            <div class="right-card-title">商家微信号</div>
+            <div class="cl-code">
+                <img src="#option('calmlog_qrcode','img/code.jpg')" class="img-fluid" alt="">
+                <p>#option('calmlog_qrcode_text')</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right-card">
+
+        <div class="right-card-main">
+            <div class="right-card-title">相关推荐</div>
+
+
+            <ul class="product-recommended-list">
+
+                #relevantProducts(product)
+                #for(product : relevantProducts)
+                <li>
+                    <a href="#(product.url)">
+                        <img src="#(product.showImage ??)" class="" alt="">
+                        <p class="recommended-title">#(product.title ??)</p>
+                    </a>
+                </li>
+                #end
+                #end
+
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+#end

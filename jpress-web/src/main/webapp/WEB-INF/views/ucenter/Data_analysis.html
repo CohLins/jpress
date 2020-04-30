@@ -1,0 +1,40 @@
+#@ucenter_layout()
+
+#define css()
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/layui/css/layui.css" />
+<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/Data_analysis.css" />
+#end
+#define content()
+	<div class="Data_analysis">
+		<div class="Data_analysis_out">
+			<ul class="mune_type">
+				<a href="javascript:;" ><li class="active">咨询文章</li></a>
+				<a href="javascript:;"><li>产品方案</li></a>
+				<a href="javascript:;"><li>培训视频</li></a>
+				<a href="javascript:;"><li>政策解读</li></a>
+				<a href="javascript:;"><li>社区帖子</li></a>
+			</ul>
+			<div class="cutting2"></div>
+			<div class="mune_DA">
+				<ul>
+					<span>时间：</span>
+					<a href="javascript:;" ><li class="active">7天</li></a>
+					<a href="javascript:;"><li>14天</li></a>
+					<a href="javascript:;"><li>30天</li></a>
+					<div class="layui-input-inline Data_analysis_timeselec">
+					<input type="text" class="layui-input" id="Date_receiving_DA" placeholder="开始  - 结束">
+					<i class="layui-icon layui-date icon_DA"></i>
+					</div>
+				</ul>
+			</div>
+			<div id="Data_list_DA">
+				<table class="layui-hide" id="Data_analysis_table" lay-filter="table_DA"></table>
+			</div>
+		</div>
+	</div>
+#end
+#define script()
+<script src="#(CPATH)/static/ucenter/jQuery.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/Data_analysis.js" type="text/javascript" charset="utf-8"></script>
+#end

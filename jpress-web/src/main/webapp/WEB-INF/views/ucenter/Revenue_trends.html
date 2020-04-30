@@ -1,0 +1,63 @@
+#@ucenter_layout()
+#define css()
+		<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="#(CPATH)/static/ucenter/Revenue_trends.css" />
+#end
+#define content()
+	<div class="Revenue_trends">
+		<div class="Revenue_trends_out">
+			<div class="Revenue_trends_con">
+				<div>
+					<span>昨日收益/元</span>
+					<span>88</span>
+				</div>
+				<div>
+					<span>本月收益/元</span>
+					<span>888</span>
+				</div>
+				<div>
+					<span>累计收益/元</span>
+					<span>1888</span>
+				</div>
+				<div>
+					<span>余额/元</span>
+					<span>988</span>
+				</div>
+			</div>
+			<a href="javascript:;" class="go_Cash_withdrawal">前往提现</a>
+			<div class="cutting1"></div>
+			<span>收益趋势分析</span>
+			<div class="mune_lxc">
+				<ul>
+					<span>时间：</span>
+					<a href="javascript:;" class="active"><li>7天</li></a>
+					<a href="javascript:;"><li>14天</li></a>
+					<a href="javascript:;"><li>30天</li></a>
+					<div class="layui-input-inline timeselec_lxc">
+					<input type="text" class="layui-input" id="Date_receiving" placeholder="开始  - 结束">
+					<i class="layui-icon layui-date icon_lxc"></i>
+					</div>
+				</ul>
+				<ul>
+					<span>单位：元</span>
+					<a href="javascript:;" class="active"><li>趋势图</li></a>
+					<a href="javascript:;"><li>数据列表</li></a>
+				</ul>
+			</div>
+			<div id="Trend_chart" class="active">
+
+			</div>
+			<div id="Data_list">
+				<table class="layui-hide" id="Trend_data" lay-filter="tabledemo"></table>
+			</div>
+		</div>
+	</div>
+#end
+#define script()
+<script src="#(CPATH)/static/ucenter/jQuery.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/highcharts.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/exporting.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/export-data.js" type="text/javascript" charset="utf-8"></script>
+<script src="#(CPATH)/static/ucenter/Revenue_trends.js" type="text/javascript" charset="utf-8"></script>
+#end

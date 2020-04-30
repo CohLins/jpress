@@ -1,0 +1,149 @@
+#@layout()
+#define script()
+<script>
+
+    function updatePrice(id) {
+        openlayer('手动入账','#(CPATH)/admin/finance/payUpdate/'+id);
+    }
+
+    function showDetail(id) {
+        openlayer('支付详情','#(CPATH)/admin/finance/payDetail/'+id);
+    }
+
+    function openlayer(title,url) {
+        layer.open({
+            type: 2,
+            title: title,
+            anim: 2,
+            shadeClose: true,
+            shade: 0.5,
+            area: ['70%', '90%'],
+            content: url,
+            end: function () {
+
+            }
+        });
+    }
+
+</script>
+
+#end
+
+#define content()
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            支付记录
+            <small>Pay List</small>
+        </h1>
+    </section>
+
+    <section class="content-header text-tap">
+        <a href="#(CPATH)/admin/finance/paylist">全部 (#(totalCount ?? 0))</a> |
+        <a href="?status=9">支付成功 (#(successCount ?? 0))</a> |
+        <a href="?status=1">支付中 (#(prepayCount ?? 0))</a> |
+        <a href="?status=2" style="color: #a00">支付失败 (#(failCount ?? 0))</a>
+    </section>
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <form class="form-horizontal actionPanel" action="#(CPATH)/admin/finance/paylist" method="get">
+                            <input type="hidden" name="status" value="#para('status')">
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label class="col-sm-3 control-label">流水号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="ns" value="#para('ns')">
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label class="col-sm-3 control-label">产品</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="pt" value="#para('pt')">
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary ">查询</button>
+                                        <button type="reset" class="btn btn-default">重置</button>
+                                        <a class="btn"> 更多<i class="fa fa-fw fa-angle-down"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </form>
+
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body ">
+
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+
+                                <th style="width: 150px">流水号</th>
+                                <th style="width: 50px">金额</th>
+                                <th style="width: 150px">产品名称</th>
+                                <th>支付用户</th>
+                                <th>支付类型</th>
+                                <th style="width: 150px">支付状态</th>
+                                <th style="width: 80px">操作</th>
+                            </tr>
+
+                            #for(payment : page.list ??)
+                            <tr class="jp-actiontr">
+                                <td>
+                                    #(payment.trx_no ??)
+                                </td>
+                                <td>
+                                    #number(payment.pay_amount,"0.00")
+                                </td>
+                                <td>
+                                    #(payment.product_title ??)
+                                </td>
+                                <td>
+                                    #(payment.payer_name ??)
+                                </td>
+                                <td>
+                                    #(payment.payTypeStr ??)
+                                </td>
+                                <td>
+                                    #(payment.payStatusStr ??)
+                                </td>
+                                <td>
+                                    #if(payment.isCanUpdateByUser())
+                                    <a href="javascript:;" onclick="updatePrice('#(payment.id)')">入账</a>
+                                    #end
+                                    <a href="javascript:;" onclick="showDetail('#(payment.id)')">详情</a>
+
+                                </td>
+                            </tr>
+                            #end
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                #@_paginate()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+#end

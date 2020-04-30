@@ -1,0 +1,51 @@
+#include("_layout.html")
+#@layout()
+
+#define content()
+<script>
+(function ($) {
+    $(function () {
+            $("body").removeClass("home blog wp-custom-logo hfeed");
+            $("body").addClass("post-template-default single single-post postid-176 single-format-standard wp-custom-logo");
+            $("#primary").show();
+    })
+})(jQuery);
+</script>
+    
+    
+    <div id="primary" class="content-area" style="display:none;">
+    
+        <div class="content-wrapper">
+    
+          <main id="main" class="site-main">
+    
+    
+            <article id="post-176"
+              class="post-176 post type-post status-publish format-standard has-post-thumbnail hentry category-travel category-auto category-tech category-food category-finance tag-25 tag-26 tag-27">
+    
+    
+              <div class="single-breadcrumbs">
+                <span>您的位置</span> <i class="fa fa-angle-right"></i> <a
+                  href="#(CPATH)/">首页</a> <i
+                  class="fa fa-angle-right"></i><a href="#">#(page.title ??)</a></div>
+    
+              <header class="entry-header">
+    
+                <h1 class="entry-title">#(page.title ??)</h1>
+          
+    
+              </header><!-- .entry-header -->
+    
+              <div class="entry-content">
+                  #(page.content ??)
+              </div><!-- .entry-content -->
+    
+            </article><!-- #post-## -->
+    
+          </main><!-- #main -->
+    
+        </div><!-- .content-wrapper -->
+    
+      </div><!-- #primary -->
+#include("_rightbar.html")
+#end

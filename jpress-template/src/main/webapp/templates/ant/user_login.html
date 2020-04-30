@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link type="text/css" media="all" href="./css/login.css"
+		rel="stylesheet">
+  <title>用户中心 – 登录</title>
+  
+  <link rel="stylesheet" href="#(CPATH)/static/components/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="#(CPATH)/static/components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="#(CPATH)/static/components/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="#(CPATH)/static/adminlte/css/AdminLTE.min.css">
+
+
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <script src="./js/jquery.js"></script>
+  <script src="/static/components/jquery/jquery.form.min.js"></script>
+	<style type="text/css">
+		@keyframes fadeInOpacity {
+			0% {
+				opacity: 0
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		:hover>*>.fbvd--wrapper {
+			animation-name: fadeInOpacity;
+			animation-duration: .3s;
+			opacity: 1
+		}
+
+		.fbvd--wrapper {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			opacity: 0;
+			text-align: center;
+			margin: 0;
+			z-index: 5
+		}
+
+		.fbvd--wrapper a {
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzRiNGY1NiIgZD0iTTggMTUuNWw3LjUtNy41aC00LjV2LThoLTZ2OGgtNC41eiI+PC9wYXRoPjwvc3ZnPg==) no-repeat 3px 4.55px;
+			background-color: #fff;
+			display: inline-block;
+			font: 700 14px Helvetica, Arial, sans-serif;
+			color: #4b4f56;
+			text-decoration: none;
+			vertical-align: middle;
+			padding: 0px 8px 0px;
+			margin-right: 8px;
+			border-radius: 2px;
+			line-height: 22px;
+			padding-left: 19px;
+			border: 1px solid #e7e7e7;
+			background-size: 13px
+		}
+
+		.fbvd--wrapper a:last-child {
+			margin-right: 0
+		}
+
+		.fbvd--wrapper a:hover {
+			text-decoration: none
+		}
+
+		.fbvd--wrapper a:focus {
+			box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
+			outline: none
+		}
+
+		.fbvd--wrapper b {
+			font-size: 13px;
+			position: relative;
+			top: 1px;
+			color: #3b5998;
+			font-weight: 400
+		}
+	</style>
+</head>
+
+<body>
+	<div class="xh-reglogo">
+      
+        <a href="#(CPATH)/">
+          <img style="max-width: 400px;" src="#option('calmlog_logo','./images/no.jpg')" alt="#(option('jpressportal_logo_text') ?? 'JPress')" itemprop="logo">
+        </a>
+
+  </div>
+
+  <script type="text/javascript">window.__wsocial_enable_entrl_submit = true;</script>
+  
+
+
+	<div class="xh-regbox">
+    <div class="xh-title">登录</div>
+    
+    <form id="login" action="#(CPATH)/user/doLogin" method="post" novalidate="novalidate"  class="autoAjaxSubmit xh-form" data-ok-href="#(CPATH)/ucenter">
+      <div class="fields-error"></div>
+
+      <p>
+        <label class="icon required" for="username">
+					<!-- <i class="fa fa-user"></i> -->
+					用户名/邮箱
+				</label>
+        <input class="input-control form-control" id="username" type="text" placeholder="请输入账号或邮箱" name="user" required=""
+          aria-required="true">
+      </p>
+      <p>
+        <label class="icon required" for="password">
+            <!-- <i class="fa fa-lock"></i> -->
+            密码
+        </label>
+        <input class="input-control form-control" id="password" type="password" placeholder="及密码..." name="pwd" required=""
+          aria-required="true">
+      </p>
+
+
+        #if(option('login_qq_enable') || option('login_wechat_enable'))
+        <div class="form-group">
+            快速登录：
+
+            #if(option('login_wechat_enable'))
+            <a href="#(CPATH)/oauth/wechat"><i class="fa fa-fw fa-wechat" style="font-size:38px;"></i></a>
+            #end
+
+            #if(option('login_qq_enable'))
+            <a href="#(CPATH)/oauth/qq"><i class="fa fa-fw fa-qq" style="font-size:38px;"></i></a>
+            #end
+        </div>
+        #end
+
+      
+
+      <p>
+    
+        <input class="submit login-loader btn btn-primary btn-block btn-flat xh-btn xh-btn-primary xh-btn-block xh-btn-lg" type="submit" value="登录" name="submit">
+        <input type="hidden" name="action" value="mobantu_login">
+      </p>
+ 
+      <input type="hidden" id="security" name="security" value="94518d1126">
+      <input type="hidden" name="_wp_http_referer" value="/monkey/">
+    </form>
+
+	</div>
+
+
+	<div class="xh-user-register"><a href="#(CPATH)/">首页</a>|<a
+			href="#(CPATH)/user/register">注册</a>
+  </div>
+  
+  
+<script src="/static/components/jquery/jquery.min.js"></script>
+<script src="/static/components/jquery/jquery.form.min.js"></script>
+<script src="/static/components/bootstrap/js/bootstrap.min.js"></script>
+<script src="#(CPATH)/static/commons/jpresscommons.js"></script>
+
+</body>
+
+</html>
+
+
+

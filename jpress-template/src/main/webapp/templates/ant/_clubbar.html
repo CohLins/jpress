@@ -1,0 +1,75 @@
+<aside id="secondary" class="widget-area sidebar">
+
+    #if(option("ant_login_enable"))
+    #if(USER)
+    <div class="ant-login" style="background-color: #fff;margin-bottom:20px;border:none;">
+        <div class="login-user">
+            <div>
+                <img alt="" src="#(USER.avatar ?? '/templates/ant/images/tx.png')">
+            </div>
+            <div class="user-data">
+                <p class="user-nickname">hi~#(USER.nickname ??)</p>
+                <p class="user-date"><a href="#(CPATH)/ucenter"> 个人中心</a> | <a href="#(CPATH)/ucenter/doLogout?csrf_token=#(CSRF_TOKEN)"> 退出登录</a></p>
+
+            </div>
+        </div>
+
+    </div>
+    #else
+    <div class="ant-login-no" style="background-color: #fff;margin-bottom:20px;border:none;">
+        <a href="#(CPATH)/user/login">登录</a> /
+        <a href="#(CPATH)/user/register">注册</a>
+    </div>
+    #end
+    #end
+
+
+    <!--<div id="search-2" class="widget widget_search">-->
+        <!--<form id="searchform" method="get" action="#(CPATH)/article/search">-->
+            <!--<input type="search" name="keyword" class="search-input" placeholder="请输入关键词" autocomplete="off">-->
+            <!--<button type="submit" class="search-submit">搜索</button>-->
+        <!--</form>-->
+    <!--</div>-->
+
+    <div class="widget">
+        <h2 class="widget-title"><span>分类<span></span></span></h2>
+        <div class="club-category">
+            #clubCategories()
+            #for(c : categories)
+            <a href="#(c.url)" class="">#(c.title ??)</a>
+            #end
+            #end
+        </div>
+    </div>
+
+    #hotPosts()
+    <div id="zimeiti_2-views-2" class="widget widget-zimeiti_2-views widget_posts_thumbnail">
+        <h2 class="widget-title"><span>热门帖子<span></span></span></h2>
+        <ul>
+
+
+            #for(post : posts)
+            <li class="clear">
+                <div class="entry-wrap">
+                    <a href="#(post.url ??)" rel="bookmark" target="_blank"> #(post.title ??) </a>
+                    <div class="entry-meta">#date(post.created,'yyyy-MM-dd HH:mm:ss')</div>
+                </div>
+            </li>
+            #end
+
+
+
+        </ul>
+    </div>
+    #end
+    #if(option("ads_enable"))
+    <div id="happythemes-ad-3" class="widget widget_ad ad-widget">
+        <div class="adwidget">
+            <a href="#option('gg1_link','')" target="_blank"><img
+                    src="#option('gg1','images/no.jpg')"></a>
+        </div>
+        <h2 class="widget-title" style="display: block;"><span>广告<span></span></span></h2>
+    </div>
+    #end
+
+</aside>

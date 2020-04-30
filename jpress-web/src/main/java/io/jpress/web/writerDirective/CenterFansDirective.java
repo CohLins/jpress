@@ -39,7 +39,7 @@ public class CenterFansDirective extends JbootDirectiveBase {
             List<UserFavorite> listByColumns = favoriteService.findListByColumns(columns);
             List<User> users=new ArrayList<>();
             for (UserFavorite userFavorite:listByColumns){
-                User byId = userService.findById(userFavorite.getTypeId());
+                User byId = userService.findById(userFavorite.getUserId());
                 users.add(byId);
             }
             scope.setGlobal("centerFans",users);
@@ -50,7 +50,7 @@ public class CenterFansDirective extends JbootDirectiveBase {
             List<UserFavorite> listByColumns = favoriteService.findListByColumns(columns);
             List<User> users=new ArrayList<>();
             for (UserFavorite userFavorite:listByColumns){
-                User byId = userService.findById(userFavorite.getTypeId());
+                User byId = userService.findById(userFavorite.getUserId());
                 if(byId.getNickname().equals(key)){
                     users.add(byId);
                 }
